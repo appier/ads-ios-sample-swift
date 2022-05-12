@@ -9,8 +9,8 @@ inhibit_all_warnings!
 
 target 'AppierAdsSwiftSample' do
   # Comment the next line if you don't want to use dynamic frameworks
-  pod 'AppierAdsAdMobMediation', '0.1.13'
-  pod 'AppierAds', '0.1.14'
+  pod 'AppierAdsAdMobMediation', '0.1.14'
+  pod 'AppierAds', '0.1.15'
   pod 'Google-Mobile-Ads-SDK', '9.3.0'
   
   project 'AppierAdsSwiftSample/AppierAdsSwiftSample.xcodeproj'

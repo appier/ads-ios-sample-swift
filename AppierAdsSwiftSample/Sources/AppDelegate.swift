@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         initAppierAds()
         GADMobileAds.sharedInstance().start { status in
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
-    
+
     private func initAppierAds() {
         // (Optional) Enable test mode for Ad response
         APRAds.shared.configuration.testMode = .bid
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             APRLogger.delegate.info("complete to initialize Appier Ads SDK: \(completion)")
         }
     }
-    
+
     func applicationDidBecomeActive(_ application: UIApplication) {
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization { _ in }

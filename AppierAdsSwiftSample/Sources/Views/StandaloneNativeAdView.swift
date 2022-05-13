@@ -10,7 +10,6 @@ class StandaloneNativeAdView: UIView {
     @IBOutlet weak var privacyInformationIconImgeView: UIImageView!
 }
 
-
 extension StandaloneNativeAdView: APRNativeAdRendering {
     var nativeAdTitleLabel: UILabel? {
         return titleLabel
@@ -35,7 +34,7 @@ extension StandaloneNativeAdView: APRNativeAdRendering {
     var nativeAdPrivacyInformationIconView: UIView? {
         return privacyInformationIconImgeView
     }
-    
+
     func getNativeAdClickableViews() -> [UIView] {
         return [
             titleLabel,

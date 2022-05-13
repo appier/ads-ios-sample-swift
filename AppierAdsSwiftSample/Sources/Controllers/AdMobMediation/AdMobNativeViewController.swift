@@ -13,7 +13,8 @@ class AdMobNativeViewController: BaseNativeAdViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        guard let nibObjects = Bundle.main.loadNibNamed(String(describing: AdMobMediumNativeAdView.self), owner: nil, options: nil),
+        guard let nibObjects = Bundle.main.loadNibNamed(
+            String(describing: AdMobMediumNativeAdView.self), owner: nil, options: nil),
               let nativeAdView = nibObjects.first as? GADNativeAdView else {
             assert(false, "Could not load nib file for adView")
         }
@@ -27,22 +28,36 @@ class AdMobNativeViewController: BaseNativeAdViewController {
             nativeAdView.rightAnchor.constraint(equalTo: nativeAdPlaceholder.rightAnchor)
         ])
 
+        view.backgroundColor = .white
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nativeAdPlaceholder.isHidden = true
+
+        /*
+         * Initialize AdMob native
+         *
+         * To enable Appier AdMob Mediation, the AdUnit requires at least one "Custom Event",
+         * with the following settings:
+         *
+         *   "Class Name": "AppierAdsAdMobMediation.APRAdAdapter".
+         *   "Parameter":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         *
+         */
+
+        // Build Request
         adLoader = GADAdLoader(
             adUnitID: adUnitId,
             rootViewController: self,
             adTypes: [.native],
             options: nil)
-
         adLoader.delegate = self
-        view.backgroundColor = .white
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        nativeAdPlaceholder.isHidden = true
         let appierExtras = APRAdExtras()
-        let request = GADRequest()
         appierExtras.set(key: .adUnitId, value: adUnitId)
+
+        // Load Ad
+        let request = GADRequest()
         request.register(appierExtras)
         adLoader.load(request)
     }
@@ -69,8 +84,14 @@ extension AdMobNativeViewController: GADAdLoaderDelegate, GADNativeAdLoaderDeleg
         (nativeAdView.iconView as? UIImageView)?.image = nativeAd.icon?.image
         nativeAdView.iconView?.isHidden = nativeAd.icon == nil
 
-        if let advertiser = nativeAd.advertiser, advertiser == APRAdMobMediation.shared.advertiserName {
-            (nativeAdView.advertiserView as? UIImageView)?.image = nativeAd.extraAssets?[APRAdMobMediation.shared.advertiserIcon] as? UIImage
+        // when the advertiser name is `Appier`, the ad is provided by Appier.
+        if let advertiser = nativeAd.advertiser,
+           let imageView = nativeAdView.advertiserView as? UIImageView,
+           let image = nativeAd.extraAssets?[APRAdMobMediation.shared.advertiserIcon] as? UIImage,
+           advertiser == APRAdMobMediation.shared.advertiserName {
+
+            // We provide advertiser image for user to get our advertising ploicy.
+            imageView.image = image
         } else {
             (nativeAdView.advertiserView as? UILabel)?.text = nativeAd.advertiser
         }

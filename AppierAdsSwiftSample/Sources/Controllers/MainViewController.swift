@@ -17,19 +17,22 @@ class MainViewController: UITabBarController {
         self.tabBar.tintColor = .AppierPrimary
         self.tabBar.backgroundColor = .AppierTextFaded
     }
-    
+
     func createAdController(title: String, dataSource: [AdDataSource]) -> UINavigationController {
-        let adTableController = AdTableViewController(nibName: String(describing: AdTableViewController.self), bundle: nil)
+        let adTableController = AdTableViewController(
+            nibName: String(describing: AdTableViewController.self),
+            bundle: nil
+        )
         adTableController.title = title
         adTableController.dataSource = dataSource
-        
+
         let navigationController = UINavigationController(rootViewController: adTableController)
         navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.AppierPrimary]
         navigationController.tabBarItem = createTabBarItem(title: title)
-        
+
         return navigationController
     }
-    
+
     func createTabBarItem(title: String) -> UITabBarItem {
         let item = UITabBarItem(title: title, image: nil, selectedImage: nil)
         item.titlePositionAdjustment = .init(horizontal: 0, vertical: -15)

@@ -78,7 +78,7 @@ extension AdMobNativeViewController: GADAdLoaderDelegate, GADNativeAdLoaderDeleg
         (nativeAdView.bodyView as? UILabel)?.text = nativeAd.body
         nativeAdView.bodyView?.isHidden = nativeAd.body == nil
 
-        (nativeAdView.callToActionView as? UIButton)?.setTitle(nativeAd.callToAction, for: .normal)
+        (nativeAdView.callToActionView as? UILabel)?.text = nativeAd.callToAction
         nativeAdView.callToActionView?.isHidden = nativeAd.callToAction == nil
 
         (nativeAdView.iconView as? UIImageView)?.image = nativeAd.icon?.image

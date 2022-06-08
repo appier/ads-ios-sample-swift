@@ -46,6 +46,9 @@ class AdMobNativeViewController: BaseNativeAdViewController {
          *
          */
 
+        // Assign self as `eventDelegate` to receive impression/clicked callback events.
+        APRAdMobAdManager.shared.eventDelegate = self
+
         // Build Request
         adLoader = GADAdLoader(
             adUnitID: adUnitId,
@@ -63,13 +66,10 @@ class AdMobNativeViewController: BaseNativeAdViewController {
     }
 }
 
-extension AdMobNativeViewController: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
-    func customNativeAdFormatIDs(for adLoader: GADAdLoader) -> [String] {
-        return [""]
-    }
-
+extension AdMobNativeViewController: GADNativeAdLoaderDelegate {
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         APRLogger.controller.debug("\(#function)")
+        nativeAd.delegate = self
         nativeAdPlaceholder.isHidden = false
 
         (nativeAdView.headlineView as? UILabel)?.text = nativeAd.headline
@@ -105,16 +105,11 @@ extension AdMobNativeViewController: GADAdLoaderDelegate, GADNativeAdLoaderDeleg
         // required to make the ad clickable.
         // Note: this should always be done after populating the ad views.
         nativeAdView.nativeAd = nativeAd
-        nativeAd.delegate = self
     }
 
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
         APRLogger.controller.debug("\(#function)")
         APRLogger.controller.debug("\(error)")
-    }
-
-    func render(_ appierNativeAd: APRAdMobNativeAd) {
-        APRLogger.controller.debug("test")
     }
 }
 
@@ -125,5 +120,33 @@ extension AdMobNativeViewController: GADNativeAdDelegate {
 
     func nativeAdDidRecordClick(_ nativeAd: GADNativeAd) {
         APRLogger.controller.debug("\(#function)")
+    }
+}
+
+extension AdMobNativeViewController: APRAdMobAdEventDelegate {
+    func onNativeAdImpressionRecorded(nativeAd: APRAdMobNativeAd) {
+        APRLogger.controller.debug("\(#function)")
+        APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
+        APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+    }
+
+    func onNativeAdImpressionRecordedFailed(nativeAd: APRAdMobNativeAd, error: APRError) {
+        APRLogger.controller.debug("\(#function)")
+        APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
+        APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+        APRLogger.controller.debug("\(error)")
+    }
+
+    func onNativeAdClickedRecorded(nativeAd: APRAdMobNativeAd) {
+        APRLogger.controller.debug("\(#function)")
+        APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
+        APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+    }
+
+    func onNativeAdClickedRecordedFailed(nativeAd: APRAdMobNativeAd, error: APRError) {
+        APRLogger.controller.debug("\(#function)")
+        APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
+        APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+        APRLogger.controller.debug("\(error)")
     }
 }

@@ -1,31 +1,31 @@
 PODS:
-  - AppierAds (1.0.0)
-  - AppierAdsAdMobMediation (1.0.0):
-    - AppierAds (~> 1.0.0)
-    - Google-Mobile-Ads-SDK (~> 9.3.0)
-  - Google-Mobile-Ads-SDK (9.3.0):
-    - GoogleAppMeasurement (< 9.0, >= 7.0)
+  - AppierAds (1.0.1)
+  - AppierAdsAdMobMediation (1.1.0):
+    - AppierAds (~> 1.0)
+    - Google-Mobile-Ads-SDK (~> 9.5)
+  - Google-Mobile-Ads-SDK (9.5.0):
+    - GoogleAppMeasurement (< 10.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
-  - GoogleAppMeasurement (8.15.0):
-    - GoogleAppMeasurement/AdIdSupport (= 8.15.0)
+  - GoogleAppMeasurement (9.1.0):
+    - GoogleAppMeasurement/AdIdSupport (= 9.1.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-    - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (8.15.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.15.0)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - GoogleAppMeasurement/AdIdSupport (9.1.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 9.1.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-    - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (8.15.0):
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (9.1.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-    - nanopb (~> 2.30908.0)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - GoogleUserMessagingPlatform (2.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.7.0):
     - GoogleUtilities/Environment
@@ -44,17 +44,17 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.7.0)"
   - GoogleUtilities/Reachability (7.7.0):
     - GoogleUtilities/Logger
-  - nanopb (2.30908.0):
-    - nanopb/decode (= 2.30908.0)
-    - nanopb/encode (= 2.30908.0)
-  - nanopb/decode (2.30908.0)
-  - nanopb/encode (2.30908.0)
+  - nanopb (2.30909.0):
+    - nanopb/decode (= 2.30909.0)
+    - nanopb/encode (= 2.30909.0)
+  - nanopb/decode (2.30909.0)
+  - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.0)
 
 DEPENDENCIES:
-  - AppierAds (= 1.0.0)
-  - AppierAdsAdMobMediation (= 1.0.0)
-  - Google-Mobile-Ads-SDK (= 9.3.0)
+  - AppierAds (= 1.0.1)
+  - AppierAdsAdMobMediation (= 1.1.0)
+  - Google-Mobile-Ads-SDK (= 9.5.0)
 
 SPEC REPOS:
   trunk:
@@ -68,15 +68,15 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  AppierAds: 7aedc9a64c4db180612db64c0e5c75807427b388
-  AppierAdsAdMobMediation: d11f3f4740ae08394a5fdfa033af68a77200ff07
-  Google-Mobile-Ads-SDK: 2c8ad48ccc3839a5927f7d7c51505a7cd4f0b672
-  GoogleAppMeasurement: 4c19f031220c72464d460c9daa1fb5d1acce958e
+  AppierAds: b734d86fa4b2ebbbc7f9c65b5292a286fbd117dd
+  AppierAdsAdMobMediation: d1437e4bbb09bb1b6eeefad3873bbfceafa96efc
+  Google-Mobile-Ads-SDK: caf686ba55108412e02a3eedb136e12e488dbfaa
+  GoogleAppMeasurement: 8ecc717f2abe3f9ee95a5d38db08827852894acc
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
 
-PODFILE CHECKSUM: c26583c03dfb880af27515fadee0a62cc5e25ad8
+PODFILE CHECKSUM: c2436d0fdd8b222479ecf243f15a56aa998c9e62
 
 COCOAPODS: 1.11.3

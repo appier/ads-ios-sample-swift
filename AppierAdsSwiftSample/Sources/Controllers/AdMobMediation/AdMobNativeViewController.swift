@@ -58,6 +58,7 @@ class AdMobNativeViewController: BaseNativeAdViewController {
         adLoader.delegate = self
         let appierExtras = APRAdExtras()
         appierExtras.set(key: .adUnitId, value: adUnitId)
+        appierExtras.set(key: .appInfo, value: SampleAppInfo())  // Pass additional information
 
         // Load Ad
         let request = GADRequest()
@@ -97,6 +98,13 @@ extension AdMobNativeViewController: GADNativeAdLoaderDelegate {
         }
         nativeAdView.advertiserView?.isHidden = nativeAd.advertiser == nil
 
+        // get app information through extraAssets.
+        if let advertiser = nativeAd.advertiser,
+           let appInfo = nativeAd.extraAssets?[APRAdMobMediation.shared.appInfo] as? SampleAppInfo,
+           advertiser == APRAdMobMediation.shared.advertiserName {
+            APRLogger.controller.debug("uuid: \(appInfo.uuid)")
+        }
+
         (nativeAdView.imageView as? UIImageView)?.image = nativeAd.images?.first?.image
 
         nativeAdView.callToActionView?.isUserInteractionEnabled = false
@@ -128,12 +136,22 @@ extension AdMobNativeViewController: APRAdMobAdEventDelegate {
         APRLogger.controller.debug("\(#function)")
         APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
         APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+
+        // Get app information which is passed by localExtras.
+        if let appInfo = nativeAd.appInfo as? SampleAppInfo {
+            APRLogger.controller.debug("uuid: \(appInfo.uuid)")
+        }
     }
 
     func onNativeAdImpressionRecordedFailed(nativeAd: APRAdMobNativeAd, error: APRError) {
         APRLogger.controller.debug("\(#function)")
         APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
         APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+
+        // Get app information which is passed by localExtras.
+        if let appInfo = nativeAd.appInfo as? SampleAppInfo {
+            APRLogger.controller.debug("uuid: \(appInfo.uuid)")
+        }
         APRLogger.controller.debug("\(error)")
     }
 
@@ -141,12 +159,22 @@ extension AdMobNativeViewController: APRAdMobAdEventDelegate {
         APRLogger.controller.debug("\(#function)")
         APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
         APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+
+        // Get app information which is passed by localExtras.
+        if let appInfo = nativeAd.appInfo as? SampleAppInfo {
+            APRLogger.controller.debug("uuid: \(appInfo.uuid)")
+        }
     }
 
     func onNativeAdClickedRecordedFailed(nativeAd: APRAdMobNativeAd, error: APRError) {
         APRLogger.controller.debug("\(#function)")
         APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
         APRLogger.controller.debug("zone id: \(nativeAd.zoneId)")
+
+        // Get app information which is passed by localExtras.
+        if let appInfo = nativeAd.appInfo as? SampleAppInfo {
+            APRLogger.controller.debug("uuid: \(appInfo.uuid)")
+        }
         APRLogger.controller.debug("\(error)")
     }
 }

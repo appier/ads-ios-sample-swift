@@ -13,8 +13,18 @@ class MainViewController: UITabBarController {
             ])
         ])
 
-        self.setViewControllers([adMobMediationController], animated: true)
+        let sdkStandaloneViewController = createAdController(title: "SDK Standalone", dataSource: [
+            AdDataSource(header: .init(title: "Native", image: .init(named: "illustration_native.png")!),
+                         cells: [.init(title: "basic", ctrCls: AdMobNativeViewController.self)]),
+            AdDataSource(header: .init(title: "banner", image: .init(named: "illustration_banner.png")!),
+                         cells: [.init(title: "basic", ctrCls: AppierAdsBannerAdViewController.self)]),
+            AdDataSource(header: .init(title: "Interstitial", image: .init(named: "illustration_interstitial.png")!),
+                         cells: [.init(title: "basic", ctrCls: AppierAdsInterstitialViewController.self)])
+        ])
+
+        self.setViewControllers([sdkStandaloneViewController, adMobMediationController], animated: true)
         self.tabBar.tintColor = .AppierPrimary
+        self.tabBar.unselectedItemTintColor = .AppierTextDefault
         self.tabBar.backgroundColor = .AppierTextFaded
     }
 

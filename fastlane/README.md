@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios generate_build
+
+```sh
+[bundle exec] fastlane ios generate_build
+```
+
+Generate Xcode workspace and build App Store distribution
+
 ### ios generate
 
 ```sh
@@ -22,6 +30,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 ```
 
 Generate Xcode workspace
+
+### ios build
+
+```sh
+[bundle exec] fastlane ios build
+```
+
+Build App Store distribution
+
+### ios upload
+
+```sh
+[bundle exec] fastlane ios upload
+```
+
+Build and upload to TestFlight
 
 ----
 

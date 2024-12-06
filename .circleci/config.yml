@@ -1,0 +1,117 @@
+version: 2.1
+
+workflows:
+  version: 2
+
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: dev
+      - publish:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /release-.*/
+
+jobs:
+  build:
+    macos:
+      xcode: 14.1.0
+
+    environment:
+      FL_OUTPUT_DIR: output
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "e8:3c:e4:90:82:5a:b6:e0:67:34:b6:9a:33:c1:be:ec"
+
+      - checkout
+      - install_gem_dependencies
+      - download_tuist
+      - generate_workspace
+      - build
+
+      - store_artifacts:
+          path: output
+
+  publish:
+    macos:
+      xcode: 14.1.0
+
+
+    environment:
+      FL_OUTPUT_DIR: output
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "e8:3c:e4:90:82:5a:b6:e0:67:34:b6:9a:33:c1:be:ec"
+
+      - checkout
+      - install_gem_dependencies
+      - download_tuist
+      - generate_workspace
+      - publish
+
+
+
+commands:
+  download_tuist:
+    description: "Download Tuist"
+
+    steps:
+      - run:
+          name: Downloading Tuist
+          command: bash <(curl -Ls https://install.tuist.io)
+
+
+  install_gem_dependencies:
+    description: "Install or restore Gem dependencies"
+
+    steps:
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Set Bundler cache directory
+          command: bundle config set --local path 'vendor/bundle'
+
+      - run:
+          name: Installing Gem dependencies
+          command: bundle check || bundle install
+
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+
+  generate_workspace:
+    description: "Generate Workspace"
+
+    steps:
+      - run:
+          name: Generating Xcode workspace with CocoaPods release
+          command: bundle exec fastlane generate
+
+
+  build:
+    description: "Build App Store distribution"
+
+    steps:
+      - run:
+          name: Building App Store distribution
+          command: bundle exec fastlane build
+
+
+  publish:
+    description: "Build and Upload to TestFlight"
+
+    steps:
+      - run:
+          name: Building and uploading to TestFlight
+          command: bundle exec fastlane upload

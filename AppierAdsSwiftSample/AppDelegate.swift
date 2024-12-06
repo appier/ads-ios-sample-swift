@@ -1,7 +1,9 @@
 import UIKit
 import AppierAds
-import GoogleMobileAds
+//import GoogleMobileAds
 import AppTrackingTransparency
+
+let keyAPRAdsTestMode = "APRAds_testMode"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,12 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         initAppierAds()
-        GADMobileAds.sharedInstance().start { status in
-            let adapterStatuses = status.adapterStatusesByClassName
-            for (adapter, _) in adapterStatuses {
-                APRLogger.delegate.debug("Adapter Name: \(adapter)")
-            }
-        }
+//        GADMobileAds.sharedInstance().start { status in
+//            let adapterStatuses = status.adapterStatusesByClassName
+//            for (adapter, _) in adapterStatuses {
+//                APRLogger.delegate.debug("Adapter Name: \(adapter)")
+//            }
+//        }
         window = UIWindow(frame: UIScreen.main.bounds)
         let viewController = MainViewController()
         window?.rootViewController = viewController
@@ -28,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func initAppierAds() {
         // (Optional) Enable test mode for Ad response
-        APRAds.shared.configuration.testMode = .bid
+        let testMode = UserDefaults.standard.object(forKey: keyAPRAdsTestMode) as? NSNumber
+        APRAds.shared.configuration.testMode = (1 == testMode) ? .bid : .none
 
         // (Optional) Set GDPR explicitly
         APRAds.shared.configuration.gdprApplies = true

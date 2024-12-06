@@ -10,14 +10,26 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
 
 platform :ios do
+
+  before_all do
+    setup_circle_ci
+  end
+
+  desc "Generate Xcode workspace and build App Store distribution"
+  lane :generate_build do |options|
+    generate(options)
+    build(options)
+  end
+
   desc "Generate Xcode workspace"
   lane :generate do |options|
+    environment_variable(set: {
+      "TUIST_APPIER_FRAMEWORK_PATH" => options[:framework_path]
+    })
+
     Dir.chdir("..") do
       sh "pod repo update"
       sh "tuist clean"
@@ -25,4 +37,50 @@ platform :ios do
       sh "pod install"
     end
   end
+
+  desc "Build App Store distribution"
+  lane :build do
+    if is_ci
+      app_store_connect_api_key(
+        duration: 1200
+      )
+    end
+
+    sync_code_signing(
+      type: "appstore",
+      readonly: is_ci
+    )
+
+    ipa = build_app(
+      workspace: "AppierAdsSampleWorkspace.xcworkspace",
+      scheme: "AppierAdsSwiftSample"
+    )
+
+    copy_artifacts(
+      target_path: ENV["FL_OUTPUT_DIR"],
+      keep_original: true,
+      artifacts: [
+        ipa
+      ]
+    )
+
+    ipa
+  end
+
+  desc "Build and upload to TestFlight"
+  lane :upload do
+    ipa = build
+
+    if is_ci
+      changelog = "Built and uploaded by Fastlane and CircleCI."
+    else
+      changelog = "Built and uploaded by Fastlane."
+    end
+
+    upload_to_testflight(
+      ipa: ipa,
+      changelog: changelog
+    )
+  end
+
 end

@@ -1,5 +1,5 @@
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class AdMobMediumNativeAdView: UIView {
     @IBOutlet weak var titleLabel: UILabel!

@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C6FF6E87720A9B2BD3C95C9 /* AppierAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCF56C26E433C07D21E11E19 /* AppierAds.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A0E09E16EAA65FFE54F85CA0 /* AppierAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF56C26E433C07D21E11E19 /* AppierAds.framework */; platformFilter = ios; };
+		F5CCF2D62D029D640079FDB1 /* AdMobNativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2AD2D029D640079FDB1 /* AdMobNativeViewController.swift */; };
+		F5CCF2D72D029D640079FDB1 /* AppierAdsBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2AF2D029D640079FDB1 /* AppierAdsBannerAdViewController.swift */; };
+		F5CCF2D82D029D640079FDB1 /* AppierAdsInterstitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2B12D029D640079FDB1 /* AppierAdsInterstitialViewController.swift */; };
+		F5CCF2D92D029D640079FDB1 /* illustration_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2B42D029D640079FDB1 /* illustration_banner.png */; };
+		F5CCF2DA2D029D640079FDB1 /* illustration_interstitial.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2B52D029D640079FDB1 /* illustration_interstitial.png */; };
+		F5CCF2DB2D029D640079FDB1 /* illustration_native.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2B62D029D640079FDB1 /* illustration_native.png */; };
+		F5CCF2DC2D029D640079FDB1 /* AdMobMediumNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2B82D029D640079FDB1 /* AdMobMediumNativeAdView.xib */; };
+		F5CCF2DD2D029D640079FDB1 /* AdTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2B92D029D640079FDB1 /* AdTableHeaderView.xib */; };
+		F5CCF2DE2D029D640079FDB1 /* AdTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2BB2D029D640079FDB1 /* AdTableViewController.xib */; };
+		F5CCF2DF2D029D640079FDB1 /* BaseNativeAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2BC2D029D640079FDB1 /* BaseNativeAdViewController.xib */; };
+		F5CCF2E02D029D640079FDB1 /* BaseNativeAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2BE2D029D640079FDB1 /* BaseNativeAdViewController.swift */; };
+		F5CCF2E12D029D640079FDB1 /* AdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2C02D029D640079FDB1 /* AdTableViewController.swift */; };
+		F5CCF2E22D029D640079FDB1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2C12D029D640079FDB1 /* MainViewController.swift */; };
+		F5CCF2E32D029D640079FDB1 /* AppierColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2C32D029D640079FDB1 /* AppierColor.swift */; };
+		F5CCF2E42D029D640079FDB1 /* APRLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2C42D029D640079FDB1 /* APRLogger.swift */; };
+		F5CCF2E52D029D640079FDB1 /* AdDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2C62D029D640079FDB1 /* AdDataSource.swift */; };
+		F5CCF2E62D029D640079FDB1 /* SampleAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2C72D029D640079FDB1 /* SampleAppInfo.swift */; };
+		F5CCF2E72D029D640079FDB1 /* AdMobMediumNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2C92D029D640079FDB1 /* AdMobMediumNativeAdView.swift */; };
+		F5CCF2E82D029D640079FDB1 /* AdTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2CA2D029D640079FDB1 /* AdTableHeaderView.swift */; };
+		F5CCF2E92D029D640079FDB1 /* StandaloneNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2CB2D029D640079FDB1 /* StandaloneNativeAdView.swift */; };
+		F5CCF2EA2D029D640079FDB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2CD2D029D640079FDB1 /* AppDelegate.swift */; };
+		F5CCF2EB2D029D640079FDB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2D02D029D640079FDB1 /* Assets.xcassets */; };
+		F5CCF2ED2D029D640079FDB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2D32D029D640079FDB1 /* LaunchScreen.storyboard */; };
+		F5CCF2F52D029FF80079FDB1 /* AppierAdNativeAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2F42D029FF80079FDB1 /* AppierAdNativeAdViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		911C5AAEB02EFEE3736B814F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2C6FF6E87720A9B2BD3C95C9 /* AppierAds.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		08AE250BA438100C6488BF3C /* AppierAdsSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppierAdsSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A987EED4D6B1AB997458867 /* AppierAdsAdMobMediation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppierAdsAdMobMediation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF56C26E433C07D21E11E19 /* AppierAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppierAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5CCF2AD2D029D640079FDB1 /* AdMobNativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdMobNativeViewController.swift; sourceTree = "<group>"; };
+		F5CCF2AF2D029D640079FDB1 /* AppierAdsBannerAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppierAdsBannerAdViewController.swift; sourceTree = "<group>"; };
+		F5CCF2B12D029D640079FDB1 /* AppierAdsInterstitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppierAdsInterstitialViewController.swift; sourceTree = "<group>"; };
+		F5CCF2B42D029D640079FDB1 /* illustration_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_banner.png; sourceTree = "<group>"; };
+		F5CCF2B52D029D640079FDB1 /* illustration_interstitial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_interstitial.png; sourceTree = "<group>"; };
+		F5CCF2B62D029D640079FDB1 /* illustration_native.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_native.png; sourceTree = "<group>"; };
+		F5CCF2B82D029D640079FDB1 /* AdMobMediumNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdMobMediumNativeAdView.xib; sourceTree = "<group>"; };
+		F5CCF2B92D029D640079FDB1 /* AdTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdTableHeaderView.xib; sourceTree = "<group>"; };
+		F5CCF2BB2D029D640079FDB1 /* AdTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdTableViewController.xib; sourceTree = "<group>"; };
+		F5CCF2BC2D029D640079FDB1 /* BaseNativeAdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNativeAdViewController.xib; sourceTree = "<group>"; };
+		F5CCF2BE2D029D640079FDB1 /* BaseNativeAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNativeAdViewController.swift; sourceTree = "<group>"; };
+		F5CCF2C02D029D640079FDB1 /* AdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdTableViewController.swift; sourceTree = "<group>"; };
+		F5CCF2C12D029D640079FDB1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F5CCF2C32D029D640079FDB1 /* AppierColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppierColor.swift; sourceTree = "<group>"; };
+		F5CCF2C42D029D640079FDB1 /* APRLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRLogger.swift; sourceTree = "<group>"; };
+		F5CCF2C62D029D640079FDB1 /* AdDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDataSource.swift; sourceTree = "<group>"; };
+		F5CCF2C72D029D640079FDB1 /* SampleAppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleAppInfo.swift; sourceTree = "<group>"; };
+		F5CCF2C92D029D640079FDB1 /* AdMobMediumNativeAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdMobMediumNativeAdView.swift; sourceTree = "<group>"; };
+		F5CCF2CA2D029D640079FDB1 /* AdTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdTableHeaderView.swift; sourceTree = "<group>"; };
+		F5CCF2CB2D029D640079FDB1 /* StandaloneNativeAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandaloneNativeAdView.swift; sourceTree = "<group>"; };
+		F5CCF2CD2D029D640079FDB1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F5CCF2CE2D029D640079FDB1 /* GADNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADNativeAd.h; sourceTree = "<group>"; };
+		F5CCF2D02D029D640079FDB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F5CCF2D12D029D640079FDB1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5CCF2D22D029D640079FDB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F5CCF2F42D029FF80079FDB1 /* AppierAdNativeAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppierAdNativeAdViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7F371A4FE95BF41CE6C67C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0E09E16EAA65FFE54F85CA0 /* AppierAds.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6819B18E3FFE9136B86FECF6 = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2D52D029D640079FDB1 /* AppierAdsSwiftSample */,
+				BC43BC531B3B4781D5756DE5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC43BC531B3B4781D5756DE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCF56C26E433C07D21E11E19 /* AppierAds.framework */,
+				7A987EED4D6B1AB997458867 /* AppierAdsAdMobMediation.framework */,
+				08AE250BA438100C6488BF3C /* AppierAdsSwiftSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F5CCF2AE2D029D640079FDB1 /* AdMobMediation */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2AD2D029D640079FDB1 /* AdMobNativeViewController.swift */,
+			);
+			path = AdMobMediation;
+			sourceTree = "<group>";
+		};
+		F5CCF2B02D029D640079FDB1 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2AF2D029D640079FDB1 /* AppierAdsBannerAdViewController.swift */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		F5CCF2B22D029D640079FDB1 /* Interstitial */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2B12D029D640079FDB1 /* AppierAdsInterstitialViewController.swift */,
+			);
+			path = Interstitial;
+			sourceTree = "<group>";
+		};
+		F5CCF2B32D029D640079FDB1 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2AE2D029D640079FDB1 /* AdMobMediation */,
+				F5CCF2F22D029FB50079FDB1 /* SDKStandalone */,
+				F5CCF2BE2D029D640079FDB1 /* BaseNativeAdViewController.swift */,
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
+		F5CCF2B72D029D640079FDB1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2B42D029D640079FDB1 /* illustration_banner.png */,
+				F5CCF2B52D029D640079FDB1 /* illustration_interstitial.png */,
+				F5CCF2B62D029D640079FDB1 /* illustration_native.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F5CCF2BA2D029D640079FDB1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2B82D029D640079FDB1 /* AdMobMediumNativeAdView.xib */,
+				F5CCF2B92D029D640079FDB1 /* AdTableHeaderView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5CCF2BD2D029D640079FDB1 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2BA2D029D640079FDB1 /* Views */,
+				F5CCF2BB2D029D640079FDB1 /* AdTableViewController.xib */,
+				F5CCF2BC2D029D640079FDB1 /* BaseNativeAdViewController.xib */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		F5CCF2C52D029D640079FDB1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2C32D029D640079FDB1 /* AppierColor.swift */,
+				F5CCF2C42D029D640079FDB1 /* APRLogger.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F5CCF2C82D029D640079FDB1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2C62D029D640079FDB1 /* AdDataSource.swift */,
+				F5CCF2C72D029D640079FDB1 /* SampleAppInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F5CCF2CC2D029D640079FDB1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2C92D029D640079FDB1 /* AdMobMediumNativeAdView.swift */,
+				F5CCF2CA2D029D640079FDB1 /* AdTableHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5CCF2CF2D029D640079FDB1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2CC2D029D640079FDB1 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F5CCF2D52D029D640079FDB1 /* AppierAdsSwiftSample */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2B32D029D640079FDB1 /* Ads */,
+				F5CCF2B72D029D640079FDB1 /* Assets */,
+				F5CCF2C52D029D640079FDB1 /* Extensions */,
+				F5CCF2BD2D029D640079FDB1 /* Layouts */,
+				F5CCF2F12D029F410079FDB1 /* MainView */,
+				F5CCF2C82D029D640079FDB1 /* Models */,
+				F5CCF2CF2D029D640079FDB1 /* Sources */,
+				F5CCF2CD2D029D640079FDB1 /* AppDelegate.swift */,
+				F5CCF2D02D029D640079FDB1 /* Assets.xcassets */,
+				F5CCF2CE2D029D640079FDB1 /* GADNativeAd.h */,
+				F5CCF2D12D029D640079FDB1 /* Info.plist */,
+				F5CCF2D32D029D640079FDB1 /* LaunchScreen.storyboard */,
+			);
+			path = AppierAdsSwiftSample;
+			sourceTree = "<group>";
+		};
+		F5CCF2F02D029F340079FDB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2CB2D029D640079FDB1 /* StandaloneNativeAdView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F5CCF2F12D029F410079FDB1 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2C02D029D640079FDB1 /* AdTableViewController.swift */,
+				F5CCF2C12D029D640079FDB1 /* MainViewController.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		F5CCF2F22D029FB50079FDB1 /* SDKStandalone */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2B02D029D640079FDB1 /* Banner */,
+				F5CCF2B22D029D640079FDB1 /* Interstitial */,
+				F5CCF2F32D029FEB0079FDB1 /* Native */,
+			);
+			path = SDKStandalone;
+			sourceTree = "<group>";
+		};
+		F5CCF2F32D029FEB0079FDB1 /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				F5CCF2F02D029F340079FDB1 /* View */,
+				F5CCF2F42D029FF80079FDB1 /* AppierAdNativeAdViewController.swift */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F01D05D80CC04D8708BD26C1 /* AppierAdsSwiftSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E1C7D2BA1B65BECA392840C /* Build configuration list for PBXNativeTarget "AppierAdsSwiftSample" */;
+			buildPhases = (
+				A37CE9A366AE093ED3A1111C /* Sources */,
+				56DE2999449550DF9C3FE48E /* Resources */,
+				CF484C599EB68F786BBA3A80 /* Embed Precompiled Frameworks */,
+				911C5AAEB02EFEE3736B814F /* Embed Frameworks */,
+				E7F371A4FE95BF41CE6C67C3 /* Frameworks */,
+				23DE53AEA43BE2E97F05EC3B /* SwiftLint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppierAdsSwiftSample;
+			productName = AppierAdsSwiftSample;
+			productReference = 08AE250BA438100C6488BF3C /* AppierAdsSwiftSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5ADCC17BD757796D1C7A4311 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Appier Inc.";
+			};
+			buildConfigurationList = AEE0925A02DE584218D09D1D /* Build configuration list for PBXProject "AppierAdsSwiftSample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6819B18E3FFE9136B86FECF6;
+			productRefGroup = BC43BC531B3B4781D5756DE5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F01D05D80CC04D8708BD26C1 /* AppierAdsSwiftSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		56DE2999449550DF9C3FE48E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5CCF2DC2D029D640079FDB1 /* AdMobMediumNativeAdView.xib in Resources */,
+				F5CCF2DD2D029D640079FDB1 /* AdTableHeaderView.xib in Resources */,
+				F5CCF2DE2D029D640079FDB1 /* AdTableViewController.xib in Resources */,
+				F5CCF2EB2D029D640079FDB1 /* Assets.xcassets in Resources */,
+				F5CCF2DF2D029D640079FDB1 /* BaseNativeAdViewController.xib in Resources */,
+				F5CCF2D92D029D640079FDB1 /* illustration_banner.png in Resources */,
+				F5CCF2DA2D029D640079FDB1 /* illustration_interstitial.png in Resources */,
+				F5CCF2DB2D029D640079FDB1 /* illustration_native.png in Resources */,
+				F5CCF2ED2D029D640079FDB1 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23DE53AEA43BE2E97F05EC3B /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT\"/scripts/lint.sh \n";
+		};
+		CF484C599EB68F786BBA3A80 /* Embed Precompiled Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Precompiled Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Skipping, nothing to be embedded.\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A37CE9A366AE093ED3A1111C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5CCF2E52D029D640079FDB1 /* AdDataSource.swift in Sources */,
+				F5CCF2E72D029D640079FDB1 /* AdMobMediumNativeAdView.swift in Sources */,
+				F5CCF2D62D029D640079FDB1 /* AdMobNativeViewController.swift in Sources */,
+				F5CCF2E82D029D640079FDB1 /* AdTableHeaderView.swift in Sources */,
+				F5CCF2E12D029D640079FDB1 /* AdTableViewController.swift in Sources */,
+				F5CCF2EA2D029D640079FDB1 /* AppDelegate.swift in Sources */,
+				F5CCF2F52D029FF80079FDB1 /* AppierAdNativeAdViewController.swift in Sources */,
+				F5CCF2D72D029D640079FDB1 /* AppierAdsBannerAdViewController.swift in Sources */,
+				F5CCF2D82D029D640079FDB1 /* AppierAdsInterstitialViewController.swift in Sources */,
+				F5CCF2E32D029D640079FDB1 /* AppierColor.swift in Sources */,
+				F5CCF2E42D029D640079FDB1 /* APRLogger.swift in Sources */,
+				F5CCF2E02D029D640079FDB1 /* BaseNativeAdViewController.swift in Sources */,
+				F5CCF2E22D029D640079FDB1 /* MainViewController.swift in Sources */,
+				F5CCF2E62D029D640079FDB1 /* SampleAppInfo.swift in Sources */,
+				F5CCF2E92D029D640079FDB1 /* StandaloneNativeAdView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F5CCF2D32D029D640079FDB1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5CCF2D22D029D640079FDB1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6D32D0F7BEF6F14F4F8107ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C86DFFA24DBFC9BFB3CD9C9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ./AppierAdsSwiftSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appier.AppierAdsSwiftSample;
+				PRODUCT_NAME = AppierAdsSwiftSample;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CD66D994A6A789629E8E5705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC89CAA086F5AB13683956CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ./AppierAdsSwiftSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appier.AppierAdsSwiftSample;
+				PRODUCT_NAME = AppierAdsSwiftSample;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E1C7D2BA1B65BECA392840C /* Build configuration list for PBXNativeTarget "AppierAdsSwiftSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC89CAA086F5AB13683956CC /* Debug */,
+				C86DFFA24DBFC9BFB3CD9C9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AEE0925A02DE584218D09D1D /* Build configuration list for PBXProject "AppierAdsSwiftSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D32D0F7BEF6F14F4F8107ED /* Debug */,
+				CD66D994A6A789629E8E5705 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5ADCC17BD757796D1C7A4311 /* Project object */;
+}

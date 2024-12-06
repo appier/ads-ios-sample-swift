@@ -45,34 +45,38 @@ class AppierAdNativeAdViewController: BaseNativeAdViewController {
 }
 
 extension AppierAdNativeAdViewController: NativeAdDelegate {
-    func onAdLoaded(nativeAd: AppierAds.APRNativeAd) {
+    func onAdLoaded(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
         DispatchQueue.main.async {
             nativeAd.render()
         }
     }
 
-    func onAdLoadedFailed(nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
+    func onAdLoadedFailed(_ nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
         print(#function)
     }
 
-    func onAdNoBid(nativeAd: AppierAds.APRNativeAd) {
+    func onAdNoBid(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
     }
 
-    func onAdImpressionRecorded(nativeAd: AppierAds.APRNativeAd) {
+    func onAdShown(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
     }
 
-    func onAdImpressionRecordedFailed(nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
+    func onAdImpressionRecorded(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
     }
 
-    func onAdClickedRecorded(nativeAd: AppierAds.APRNativeAd) {
+    func onAdImpressionRecordedFailed(_ nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
         print(#function)
     }
 
-    func onAdClickedRecordedFailed(nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
+    func onAdClickedRecorded(_ nativeAd: AppierAds.APRNativeAd) {
+        print(#function)
+    }
+
+    func onAdClickedRecordedFailed(_ nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
         print(#function)
     }
 }

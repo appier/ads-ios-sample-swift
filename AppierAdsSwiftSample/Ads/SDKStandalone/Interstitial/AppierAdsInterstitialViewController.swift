@@ -131,11 +131,15 @@ extension AppierAdsInterstitialViewController: APRInterstitialAdDelegate {
         print(#function)
     }
     
-    func onAdImpressionRecorded(_ interstitialAd: AppierAds.APRInterstitialAd) {
+    func onAdShown(_ interstitialAd: AppierAds.APRInterstitialAd) {
         print(#function)
     }
-    
-    func onAdImpressionFailed(_ interstitialAd: AppierAds.APRInterstitialAd) {
+
+    func onAdShownFailed(_ interstitialAd: AppierAds.APRInterstitialAd) {
+        print(#function)
+    }
+
+    func onAdDismiss(_ interstitialAd: AppierAds.APRInterstitialAd) {
         print(#function)
     }
     

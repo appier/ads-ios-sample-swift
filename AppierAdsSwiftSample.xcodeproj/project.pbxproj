@@ -33,6 +33,12 @@
 		F5CCF2EB2D029D640079FDB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2D02D029D640079FDB1 /* Assets.xcassets */; };
 		F5CCF2ED2D029D640079FDB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2D32D029D640079FDB1 /* LaunchScreen.storyboard */; };
 		F5CCF2F52D029FF80079FDB1 /* AppierAdNativeAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2F42D029FF80079FDB1 /* AppierAdNativeAdViewController.swift */; };
+		F5CCF2F82D02A25D0079FDB1 /* illustration_interstitial_step0_art.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2F72D02A25D0079FDB1 /* illustration_interstitial_step0_art.png */; };
+		F5CCF2FD2D02A2760079FDB1 /* illustration_interstitial_step1_art.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2F92D02A2760079FDB1 /* illustration_interstitial_step1_art.png */; };
+		F5CCF2FE2D02A2760079FDB1 /* illustration_interstitial_step2_art.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2FA2D02A2760079FDB1 /* illustration_interstitial_step2_art.png */; };
+		F5CCF2FF2D02A2760079FDB1 /* illustration_interstitial_step1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2FB2D02A2760079FDB1 /* illustration_interstitial_step1.png */; };
+		F5CCF3002D02A2760079FDB1 /* illustration_interstitial_step0.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF2FC2D02A2760079FDB1 /* illustration_interstitial_step0.png */; };
+		F5CCF3022D02A5C70079FDB1 /* illustration_interstitial_step2.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF3012D02A5C70079FDB1 /* illustration_interstitial_step2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +85,12 @@
 		F5CCF2D12D029D640079FDB1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5CCF2D22D029D640079FDB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5CCF2F42D029FF80079FDB1 /* AppierAdNativeAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppierAdNativeAdViewController.swift; sourceTree = "<group>"; };
+		F5CCF2F72D02A25D0079FDB1 /* illustration_interstitial_step0_art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_interstitial_step0_art.png; sourceTree = "<group>"; };
+		F5CCF2F92D02A2760079FDB1 /* illustration_interstitial_step1_art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_interstitial_step1_art.png; sourceTree = "<group>"; };
+		F5CCF2FA2D02A2760079FDB1 /* illustration_interstitial_step2_art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_interstitial_step2_art.png; sourceTree = "<group>"; };
+		F5CCF2FB2D02A2760079FDB1 /* illustration_interstitial_step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_interstitial_step1.png; sourceTree = "<group>"; };
+		F5CCF2FC2D02A2760079FDB1 /* illustration_interstitial_step0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_interstitial_step0.png; sourceTree = "<group>"; };
+		F5CCF3012D02A5C70079FDB1 /* illustration_interstitial_step2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_interstitial_step2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +162,12 @@
 			children = (
 				F5CCF2B42D029D640079FDB1 /* illustration_banner.png */,
 				F5CCF2B52D029D640079FDB1 /* illustration_interstitial.png */,
+				F5CCF2FC2D02A2760079FDB1 /* illustration_interstitial_step0.png */,
+				F5CCF2F72D02A25D0079FDB1 /* illustration_interstitial_step0_art.png */,
+				F5CCF2FB2D02A2760079FDB1 /* illustration_interstitial_step1.png */,
+				F5CCF2F92D02A2760079FDB1 /* illustration_interstitial_step1_art.png */,
+				F5CCF3012D02A5C70079FDB1 /* illustration_interstitial_step2.png */,
+				F5CCF2FA2D02A2760079FDB1 /* illustration_interstitial_step2_art.png */,
 				F5CCF2B62D029D640079FDB1 /* illustration_native.png */,
 			);
 			path = Assets;
@@ -325,6 +343,12 @@
 				F5CCF2DF2D029D640079FDB1 /* BaseNativeAdViewController.xib in Resources */,
 				F5CCF2D92D029D640079FDB1 /* illustration_banner.png in Resources */,
 				F5CCF2DA2D029D640079FDB1 /* illustration_interstitial.png in Resources */,
+				F5CCF3002D02A2760079FDB1 /* illustration_interstitial_step0.png in Resources */,
+				F5CCF2F82D02A25D0079FDB1 /* illustration_interstitial_step0_art.png in Resources */,
+				F5CCF2FF2D02A2760079FDB1 /* illustration_interstitial_step1.png in Resources */,
+				F5CCF2FD2D02A2760079FDB1 /* illustration_interstitial_step1_art.png in Resources */,
+				F5CCF3022D02A5C70079FDB1 /* illustration_interstitial_step2.png in Resources */,
+				F5CCF2FE2D02A2760079FDB1 /* illustration_interstitial_step2_art.png in Resources */,
 				F5CCF2DB2D029D640079FDB1 /* illustration_native.png in Resources */,
 				F5CCF2ED2D029D640079FDB1 /* LaunchScreen.storyboard in Resources */,
 			);

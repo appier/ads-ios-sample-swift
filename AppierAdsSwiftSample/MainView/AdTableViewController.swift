@@ -1,4 +1,5 @@
 import UIKit
+import AppierAds
 
 class AdTableViewController: UIViewController {
     private static let cellId = "AdTableCell"
@@ -33,14 +34,31 @@ class AdTableViewController: UIViewController {
         let currentMode = (1 == userDefaults.value(forKey: keyAPRAdsTestMode) as? NSNumber) ? "Enabled" : "Disabled"
         let alert = UIAlertController(title: "Test Mode: \(currentMode)",
                                       message: "Refresh the app after changing test mode state",
-                                      preferredStyle: .alert)
-        let enableAction = UIAlertAction(title: "Enable", style: .default) { _ in
+                                      preferredStyle: .actionSheet)
+
+        let bidAction = UIAlertAction(title: "Bid", style: .default) { _ in
+            APRAds.shared.configuration.testMode = .bid
             userDefaults.setValue(1, forKey: keyAPRAdsTestMode)
         }
+
+        let noBidAction = UIAlertAction(title: "No bid", style: .default) { _ in
+            APRAds.shared.configuration.testMode = .noBid
+            userDefaults.setValue(2, forKey: keyAPRAdsTestMode)
+        }
+
+        let bidWithStoreViewAction = UIAlertAction(title: "Bid with store view", style: .default) { _ in
+            APRAds.shared.configuration.testMode = .bidWithStoreView
+            userDefaults.setValue(3, forKey: keyAPRAdsTestMode)
+        }
+
         let disableAction = UIAlertAction(title: "Disable", style: .default) { _ in
+            APRAds.shared.configuration.testMode = .none
             userDefaults.setValue(0, forKey: keyAPRAdsTestMode)
         }
-        alert.addAction(enableAction)
+
+        alert.addAction(bidAction)
+        alert.addAction(noBidAction)
+        alert.addAction(bidWithStoreViewAction)
         alert.addAction(disableAction)
         present(alert, animated: true)
     }

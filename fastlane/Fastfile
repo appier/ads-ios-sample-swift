@@ -32,7 +32,7 @@ platform :ios do
   end
 
   desc "Build ipa file"
-  lane :build do
+  lane :build do |options|
     framework_configuration = options[:framework_configuration]
     framework_path = options[:framework_path]
     is_development = options[:distribution_type] == 'development'

@@ -1,0 +1,79 @@
+name: Build App with framework path
+
+on:
+  workflow_call:
+    inputs:
+      framework_path:
+        required: true
+        type: string
+        
+      # This is the configuration used when building the SDK. Will determine app icon and .ipa file name accordingly.
+      framework_configuration:
+        required: true
+        type: string
+        
+      framework_artifact_name:
+        required: true
+        type: string
+        
+      ref:
+        required: true
+        type: string
+        
+      output_name:
+        type: string
+        default: "AppierAdsSample"
+
+      distribution_type:
+        required: true
+        type: string
+        
+      is_ios_dev:
+        required: false
+        type: string
+        
+jobs:
+  build_app_with_framework_path:
+    environment: ENV
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: '${{ secrets.GH_TOKEN }}'
+        repository: 'appier/ads-ios-sample-swift'
+        ref: '${{ inputs.ref }}'
+        
+    - name: Download framework from artifact
+      uses: actions/download-artifact@master
+      with:
+        name: '${{ inputs.framework_artifact_name }}'
+        path: '${{ github.workspace }}/artifacts/'
+      
+    - name: Prepar for xcode build
+      uses: appier/appier-ios/.github/actions/prepare_for_xcode_build@develop
+      with:
+        gemfile_hash: ${{ hashFiles('**/Gemfile.lock') }}
+        xcode_version: '${{ vars.XCODE_VERSION }}'
+      
+    - name: Build app with local framework
+      env:
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.CER_GITHUB_TOKEN }}
+        APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+        APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
+        APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+      run: |
+        bundle exec fastlane setup_and_build \
+          framework_source:path \
+          distribution_type:${{ inputs.distribution_type }} \
+          framework_path:${{ github.workspace }}/artifacts/${{ inputs.framework_path }} \
+          framework_configuration:${{ inputs.framework_configuration }} \
+          output_name:${{ inputs.output_name }}
+          
+    - name: Upload Framework Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: '${{ inputs.output_name }}'
+        path: '${{ github.workspace }}/artifacts/*.ipa'

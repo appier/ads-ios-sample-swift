@@ -16,16 +16,22 @@ platform :ios do
 
   before_all do
     setup_ci if ENV['CI']
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "180"
+    ENV["FASTLANE_XCODE_LIST_TIMEOUT"] = "180"
+  end
+
+  desc "Xcode project setup and build ipa file"
+  lane :setup_and_build do |options|
+    generate(options)
+    build(options)
   end
 
   lane :generate do |options|
     clean()
-    setup_app_icon(options)
-    setup_is_ios_dev(options)
     install_framework(options)
   end
 
-  desc "Build App Store distribution"
+  desc "Build ipa file"
   lane :build do
     framework_configuration = options[:framework_configuration]
     framework_path = options[:framework_path]
@@ -49,6 +55,7 @@ platform :ios do
 
     sync_code_signing(
       git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
+      git_branch: "appier_ads",
       type: type,
       readonly: is_ci,
       force_for_new_devices: true

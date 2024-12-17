@@ -15,21 +15,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios generate_build
-
-```sh
-[bundle exec] fastlane ios generate_build
-```
-
-Generate Xcode workspace and build App Store distribution
-
 ### ios generate
 
 ```sh
 [bundle exec] fastlane ios generate
 ```
 
-Generate Xcode workspace
+
 
 ### ios build
 
@@ -38,6 +30,46 @@ Generate Xcode workspace
 ```
 
 Build App Store distribution
+
+### ios download_public_release
+
+```sh
+[bundle exec] fastlane ios download_public_release
+```
+
+Download public release from GitHub
+
+### ios install_framework_with_cocoapods
+
+```sh
+[bundle exec] fastlane ios install_framework_with_cocoapods
+```
+
+
+
+### ios install_local_framework
+
+```sh
+[bundle exec] fastlane ios install_local_framework
+```
+
+
+
+### ios clean
+
+```sh
+[bundle exec] fastlane ios clean
+```
+
+
+
+### ios clean_local_framework
+
+```sh
+[bundle exec] fastlane ios clean_local_framework
+```
+
+
 
 ### ios upload
 

@@ -15,56 +15,317 @@ default_platform(:ios)
 platform :ios do
 
   before_all do
-    setup_circle_ci
+    setup_ci if ENV['CI']
   end
 
-  desc "Generate Xcode workspace and build App Store distribution"
-  lane :generate_build do |options|
-    generate(options)
-    build(options)
-  end
-
-  desc "Generate Xcode workspace"
   lane :generate do |options|
-    environment_variable(set: {
-      "TUIST_APPIER_FRAMEWORK_PATH" => options[:framework_path]
-    })
-
-    Dir.chdir("..") do
-      sh "pod repo update"
-      sh "tuist clean"
-      sh "tuist generate"
-      sh "pod install"
-    end
+    clean()
+    setup_app_icon(options)
+    setup_is_ios_dev(options)
+    install_framework(options)
   end
 
   desc "Build App Store distribution"
   lane :build do
+    framework_configuration = options[:framework_configuration]
+    framework_path = options[:framework_path]
+    is_development = options[:distribution_type] == 'development'
+    type = is_development ? 'development' : 'adhoc'
+    export_method = is_development ? 'development' : 'ad-hoc'
+    configuration = is_development ? 'Debug' : 'Release'
+
+    if framework_path.is_a?(String) && !framework_path.empty? && !framework_path.start_with?("/")
+      framework_path = "../#{framework_path}"
+    end
+
     if is_ci
       app_store_connect_api_key(
+        key_id: ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"],
+        issuer_id: ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
+        key_content: ENV["APP_STORE_CONNECT_API_KEY_KEY"],
         duration: 1200
       )
     end
 
     sync_code_signing(
-      type: "appstore",
-      readonly: is_ci
+      git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
+      type: type,
+      readonly: is_ci,
+      force_for_new_devices: true
     )
 
+    ipa_name = options.fetch(:output_name, "AppierAdsSample")
+
+    unless framework_path.nil?
+      plist_file_path_in_xcode13 = "#{framework_path}/Appier.xcframework/ios-arm64_armv7/Appier.framework/Info.plist"
+      plist_file_path_in_xcode14 = "#{framework_path}/Appier.xcframework/ios-arm64/Appier.framework/Info.plist"
+
+      if File.file?(plist_file_path_in_xcode13)
+        plist_file = plist_file_path_in_xcode13
+      elsif File.file?(plist_file_path_in_xcode14)
+        plist_file = plist_file_path_in_xcode14
+      else
+        raise 'AppierAds.framework is not found in path.'
+      end
+
+      version_number = sh("/usr/libexec/PlistBuddy #{plist_file} -c 'Print :CFBundleShortVersionString'").strip
+      build_number = sh("/usr/libexec/PlistBuddy #{plist_file} -c 'Print :CFBundleVersion'").strip
+    end
+
     ipa = build_app(
+      configuration: configuration,
       workspace: "AppierAdsSampleWorkspace.xcworkspace",
-      scheme: "AppierAdsSwiftSample"
+      scheme: "AppierAdsSample",
+      output_name: ipa_name,
+      export_method: export_method
+    )
+
+    ipa_archive = zip(
+      path: ipa,
+      output_path: "#{ipa_name}.ipa.zip"
     )
 
     copy_artifacts(
       target_path: ENV["FL_OUTPUT_DIR"],
-      keep_original: true,
+      keep_original: false,
       artifacts: [
-        ipa
+        ipa,
+        ipa_archive
       ]
     )
+  end
 
-    ipa
+  desc "Download public release from GitHub"
+  lane :download_public_release do |options|
+
+    version = options.fetch(:version, ".")
+
+    output_directory = "../#{options.fetch(:output_directory, ".")}"
+
+    Dir.chdir("..") do
+      sh("mkdir", "-p", output_directory)
+
+      UI.message "Downloading to #{output_directory}"
+      UI.message "Version: #{version}"
+
+      output_path = "#{output_directory}/AppierAdMobMediationFramework.zip"
+      download_url = "https://github.com/appier/ads-ios-sdk/releases/download/#{version}/AppierAdMobMediationFramework.zip"
+
+      local_directory = File.dirname(output_path)
+      FileUtils.mkdir_p(local_directory) unless File.directory?(local_directory)
+      downloaded_file = URI.open(download_url)
+      File.open(output_path, 'wb') do |file|
+        file.write(downloaded_file.read)
+      end
+
+      UI.success "Archive downloaded to #{output_directory}/AppierAdMobMediationFramework.zip"
+
+      sh("unzip", "-o", "#{output_directory}/AppierAdMobMediationFramework.zip", "-d", "#{output_directory}")
+
+      UI.success "Archive extracted to #{output_directory}"
+    end
+  end
+
+  private_lane :install_framework do |options|
+    framework_source = options[:framework_source] || 'pod'
+
+    case framework_source
+    when 'path', 'github'
+      install_local_framework(options)
+    when 'swiftpm'
+      install_framework_with_spm(options)
+    when 'pod'
+      install_framework_with_cocoapods(options)
+    else
+      raise ArgumentError, "Unsupported framework source: #{framework_source}"
+    end  
+  end
+
+  lane :install_framework_with_cocoapods do |options|
+
+    environment_variable(set: { "APPIER_FRAMEWORK_SOURCE_COCOAPODS" => "YES" })
+
+    new_version = remove_v_prefix(options[:version])
+    podfile_path = '../Podfile'
+  
+    # Read the Podfile content
+    podfile_content = File.read(podfile_path)
+  
+    # If a new version is specified, set it; otherwise, remove any version constraint
+    unless new_version.nil?
+      # Set the new version for the specified framework
+      updated_content = podfile_content.gsub(/pod 'AppierAds'(, '.*?')?/, "pod 'AppierAds', '#{new_version}'")
+    else
+      # Remove the version constraint entirely for the specified framework
+      updated_content = podfile_content.gsub(/pod 'AppierAds'(, '.*?')?/, "pod 'AppierAds'")
+    end
+    # Write the updated content back to the Podfile
+    File.open(podfile_path, 'w') { |file| file.puts updated_content }
+  
+    UI.message("Updated frameworks to version #{new_version} in Podfile.")
+  
+    podfile_content = File.read(podfile_path)
+
+    cocoapods
+
+  end
+
+  lane :install_local_framework do |options|
+    framework_path = options[:framework_path]
+
+    environment_variable(set: { "APPIER_FRAMEWORK_SOURCE_COCOAPODS" => "NO" })
+
+    project = Xcodeproj::Project.open('../AppierAdsSwiftSample.xcodeproj')
+  
+    # Define the targets and their corresponding frameworks
+    targets_and_frameworks = {
+      "AppierAdsSwiftSample" => "AppierAds.xcframework",
+    }
+  
+    # Loop through each target and add the corresponding framework
+    targets_and_frameworks.each do |target_name, framework_file|
+      target = project.targets.find { |t| t.name == target_name }
+
+      if target
+        new_framework_reference = project.new_file("#{framework_path}/#{framework_file}")
+
+        # Check if the framework is already present in the target's frameworks build phase
+        target.frameworks_build_phase.files.find do |file|
+          if file.file_ref && file.file_ref.name == framework_file
+            UI.message("framework exists #{file.file_ref.name}")
+            # If the framework already exists, remove it
+            target.frameworks_build_phase.remove_file_reference(file.file_ref)
+          else
+            UI.message("File ref is nil for a file in the frameworks build phase")
+            false
+          end
+        end
+  
+        framework_reference = project.new_file("#{framework_path}/#{framework_file}")
+        target.frameworks_build_phase.add_file_reference(framework_reference)
+
+        # Add the framework to the "Embed Frameworks" phase (set to Embed & Sign)
+        embed_framework_phase = target.build_phases.find { |phase| phase.display_name == 'Embed Frameworks' }
+
+        if embed_framework_phase.nil?
+          # If no Embed Frameworks phase exists, create one
+          embed_framework_phase = target.new_copy_files_build_phase
+          embed_framework_phase.name = 'Embed Frameworks'
+          embed_framework_phase.dst_subfolder_spec = :frameworks
+        end
+
+        # Add the framework to the Embed Frameworks phase
+        embed_framework_phase.add_file_reference(framework_reference)
+        embed_framework_phase.files.last.settings = nil
+
+        UI.message("Added framework #{framework_file} to Embed Frameworks phase")
+      end
+    end
+
+    project.save
+
+    UI.message("Install local frameworks successfully")
+  end
+
+  lane :clean do |options|
+    # Remove CocoaPods
+    Dir.chdir("../") do
+      Actions.sh("pod deintegrate")
+      Actions.sh('rm -rf Pods/')
+      Actions.sh('rm -rf Podfile.lock')
+      Actions.sh('rm -rf .xcworkspace')
+    end
+
+    # clean_spm_dependencies()
+    clean_local_framework()
+  end
+
+  # lane :clean_spm_dependencies do |options|
+  #   package_path = '../AIQUAPackages/Automation-test-app-package/Package.swift'
+
+  #   content = File.read(package_path)
+
+  #   # Find the position of the dependencies array
+  #   dependencies_string = 'dependencies: ['
+  #   package_dependency_arr_pos = content.index(dependencies_string)
+
+  #   if package_dependency_arr_pos
+  #     dependencies_start_pos = content.index(dependencies_string) + dependencies_string.length
+  #     dependencies_end_pos = content.index("]", dependencies_start_pos)-1
+  #     puts "dependencies_start_pos:#{dependencies_start_pos} dependencies_end_pos:#{dependencies_end_pos}".yellow
+  #     # Clean out the entire dependencies array
+  #     content[dependencies_start_pos..dependencies_end_pos] = ''
+
+  #     puts "Successfully cleaned the dependencies array."
+  #   else
+  #     puts "No dependencies array found in #{package_path}"
+  #   end
+
+  #   framework_dependencies_arr_pos = content.index(dependencies_string, package_dependency_arr_pos + 1)
+
+  #   if framework_dependencies_arr_pos
+  #     framework_start_pos = framework_dependencies_arr_pos + dependencies_string.length
+  #     framework_end_pos = content.index("]", framework_start_pos)-1
+  #     puts "framework_start_pos:#{framework_start_pos} framework_end_pos:#{framework_end_pos}".yellow
+  #     # Clean out the entire dependencies array
+  #     content[framework_start_pos..framework_end_pos] = ''
+
+  #     puts "Successfully added framework dependency"
+  #   else
+  #     puts "No target dependencies array found"
+  #   end
+    
+  #   File.write(package_path, content)
+  # end
+
+  lane :clean_local_framework do |options|
+    project = Xcodeproj::Project.open('../AppierAdsSwiftSample.xcodeproj')
+    frameworks_to_remove = ["AppierAds.xcframework", "AppierAds.framework"]
+
+    project.targets.each do |target|
+      frameworks_to_remove.each do |framework_name|
+        # Check in the "Link Binary with Libraries" build phase
+        framework_reference = target.frameworks_build_phase.files.find do |file|
+          file.file_ref && file.file_ref.name == framework_name
+        end
+
+        # If the framework is found in "Link Binary with Libraries", remove it
+        if framework_reference
+          UI.message("Removing framework: #{framework_name} from target: #{target.name} (Link Binary with Libraries)")
+          target.frameworks_build_phase.remove_file_reference(framework_reference.file_ref)
+        else
+          UI.message("Framework #{framework_name} not found in Link Binary with Libraries for target #{target.name}")
+        end
+
+        # Check in the "Embed Frameworks" build phase
+        embed_framework_phase = target.build_phases.find { |phase| phase.display_name == 'Embed Frameworks' }
+        if embed_framework_phase
+          embedded_framework_reference = embed_framework_phase.files.find do |file|
+            file.file_ref && file.file_ref.name == framework_name
+          end
+
+          # If the framework is found in "Embed Frameworks", remove it
+          if embedded_framework_reference
+            UI.message("Removing framework: #{framework_name} from target: #{target.name} (Embed Frameworks)")
+            embed_framework_phase.remove_file_reference(embedded_framework_reference.file_ref)
+          else
+            UI.message("Framework #{framework_name} not found in Embed Frameworks for target #{target.name}")
+          end
+        end
+      end
+    end
+
+    # Remove the file references from the Project Navigator (file system references)
+    project.files.each do |file|
+      frameworks_to_remove.each do |framework_name|
+        if file.path.include?(framework_name)
+          UI.message("Removing file: #{file.path}")
+          file.remove_from_project()
+        end
+      end
+    end
+
+    project.save
   end
 
   desc "Build and upload to TestFlight"
@@ -81,6 +342,15 @@ platform :ios do
       ipa: ipa,
       changelog: changelog
     )
+  end
+
+  def remove_v_prefix(version)
+    # Check if the version starts with 'v' and remove it if true
+    if version.nil? || version.empty?
+      return nil
+    else
+      return (version.start_with?("v") ? version[1..] : version)
+    end
   end
 
 end

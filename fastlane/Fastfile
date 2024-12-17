@@ -64,15 +64,15 @@ platform :ios do
     ipa_name = options.fetch(:output_name, "AppierAdsSample")
 
     unless framework_path.nil?
-      plist_file_path_in_xcode13 = "#{framework_path}/Appier.xcframework/ios-arm64_armv7/Appier.framework/Info.plist"
-      plist_file_path_in_xcode14 = "#{framework_path}/Appier.xcframework/ios-arm64/Appier.framework/Info.plist"
+      plist_file_path_in_xcode13 = "#{framework_path}/AppierAds.xcframework/ios-arm64_armv7/Appier.framework/Info.plist"
+      plist_file_path_in_xcode14 = "#{framework_path}/AppierAds.xcframework/ios-arm64/Appier.framework/Info.plist"
 
       if File.file?(plist_file_path_in_xcode13)
         plist_file = plist_file_path_in_xcode13
       elsif File.file?(plist_file_path_in_xcode14)
         plist_file = plist_file_path_in_xcode14
       else
-        raise 'AppierAds.framework is not found in path.'
+        raise 'AppierAds.xcframework is not found in path.'
       end
 
       version_number = sh("/usr/libexec/PlistBuddy #{plist_file} -c 'Print :CFBundleShortVersionString'").strip

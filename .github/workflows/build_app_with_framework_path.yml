@@ -28,10 +28,6 @@ on:
         required: true
         type: string
         
-      is_ios_dev:
-        required: false
-        type: string
-        
 jobs:
   build_app_with_framework_path:
     environment: ENV

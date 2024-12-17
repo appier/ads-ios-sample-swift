@@ -55,7 +55,7 @@ platform :ios do
 
     sync_code_signing(
       git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
-      git_branch: "appier_ads",
+      git_branch: "appier-ads",
       type: type,
       readonly: is_ci,
       force_for_new_devices: true

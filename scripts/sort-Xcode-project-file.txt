@@ -39,8 +39,6 @@ use Getopt::Long;
 sub sortChildrenByFileName($$);
 sub sortFilesByFileName($$);
 
-# Some files without extensions, so they can sort with the other files.
-# Otherwise, names without extensions are assumed to be groups or directories and sorted last.
 my %isFile = map { $_ => 1 } qw(
     create_hash_table
 );
@@ -77,7 +75,6 @@ for my $projectFile (@ARGV) {
         next;
     }
 
-    # Grab the mainGroup for the project file.
     my $mainGroup = "";
     open(IN, "< $projectFile") || die "Could not open $projectFile: $!";
     while (my $line = <IN>) {
@@ -85,9 +82,6 @@ for my $projectFile (@ARGV) {
     }
     close(IN);
 
-    # Guess the basename of any umbrella header, based on the project name.
-    # Umbrella headers are sorted to the top of their Headers phase to work
-    # around rdar://104432605.
     (my $umbrellaHeaderBasename = $projectFile) =~ s/.*\/(\w+?)(Legacy)?\.xcodeproj\/project\.pbxproj$/$1/;
 
     my ($OUT, $tempFileName) = tempfile(
@@ -96,18 +90,25 @@ for my $projectFile (@ARGV) {
         UNLINK => 0,
     );
 
-    # Clean up temp file in case of die()
     $SIG{__DIE__} = sub {
         close(IN);
         close($OUT);
         unlink($tempFileName);
     };
 
+    my $originalContent = do {
+        local $/ = undef;
+        open(my $fh, '<', $projectFile) || die "Could not open $projectFile: $!";
+        <$fh>;
+    }; # [New: Line 98] Read the original content for comparison.
+
+    my $sortedContent = ""; # [New: Line 100] Store sorted content in a variable.
+
     my @lastTwo = ();
     open(IN, "< $projectFile") || die "Could not open $projectFile: $!";
     while (my $line = <IN>) {
         if ($line =~ /^(\s*)files = \(\s*$/) {
-            print $OUT $line;
+            $sortedContent .= $line; # [New: Line 106]
             my $endMarker = $1 . ");";
             my @files;
             while (my $fileLine = <IN>) {
@@ -116,17 +117,15 @@ for my $projectFile (@ARGV) {
                     last;
                 }
                 if ($fileLine =~ /$umbrellaHeaderBasename(Private)?\.h/) {
-                    # Sort umbrella headers to the top. Needed until
-                    # rdar://104432605 is fixed in all shipping Xcodes.
-                    print $OUT $fileLine;
+                    $sortedContent .= $fileLine; # [New: Line 116]
                 } else {
                     push @files, $fileLine;
                 }
             }
-            print $OUT sort sortFilesByFileName @files;
-            print $OUT $endMarker;
+            $sortedContent .= join("", sort sortFilesByFileName @files);
+            $sortedContent .= $endMarker;
         } elsif ($line =~ /^(\s*)children = \(\s*$/) {
-            print $OUT $line;
+            $sortedContent .= $line;
             my $endMarker = $1 . ");";
             my @children;
             while (my $childLine = <IN>) {
@@ -137,23 +136,29 @@ for my $projectFile (@ARGV) {
                 push @children, $childLine;
             }
             if ($lastTwo[0] =~ m#^\s+\Q$mainGroup\E = \{$#) {
-                # Don't sort mainGroup
-                print $OUT @children;
+                $sortedContent .= join("", @children);
             } elsif ($lastTwo[0] =~ m#\Q/* Products */\E = \{$#) {
-                # Don't sort Products
-                print $OUT @children;
+                $sortedContent .= join("", @children);
             } else {
-                print $OUT sort sortChildrenByFileName @children;
+                $sortedContent .= join("", sort sortChildrenByFileName @children);
             }
-            print $OUT $endMarker;
+            $sortedContent .= $endMarker;
         } else {
-            print $OUT $line;
+            $sortedContent .= $line;
         }
 
         push @lastTwo, $line;
         shift @lastTwo if scalar(@lastTwo) > 2;
     }
     close(IN);
+
+    if ($originalContent eq $sortedContent) {
+        print "The project file is already sorted. No changes were made.\n";
+        unlink($tempFileName);
+        next;
+    }
+
+    print $OUT $sortedContent;
     close($OUT);
 
     unlink($projectFile) || die "Could not delete $projectFile: $!";

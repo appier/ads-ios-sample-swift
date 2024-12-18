@@ -64,8 +64,8 @@ platform :ios do
     ipa_name = options.fetch(:output_name, "AppierAdsSample")
 
     unless framework_path.nil?
-      plist_file_path_in_xcode13 = "#{framework_path}/AppierAds.xcframework/ios-arm64_armv7/Appier.framework/Info.plist"
-      plist_file_path_in_xcode14 = "#{framework_path}/AppierAds.xcframework/ios-arm64/Appier.framework/Info.plist"
+      plist_file_path_in_xcode13 = "#{framework_path}/AppierAds.xcframework/ios-arm64_armv7/AppierAds.framework/Info.plist"
+      plist_file_path_in_xcode14 = "#{framework_path}/AppierAds.xcframework/ios-arm64/AppierAds.framework/Info.plist"
 
       if File.file?(plist_file_path_in_xcode13)
         plist_file = plist_file_path_in_xcode13
@@ -81,8 +81,8 @@ platform :ios do
 
     ipa = build_app(
       configuration: configuration,
-      workspace: "AppierAdsSampleWorkspace.xcworkspace",
-      scheme: "AppierAdsSample",
+      workspace: "AppierAdsSwiftSample.xcworkspace",
+      scheme: "AppierAdsSwiftSample",
       output_name: ipa_name,
       export_method: export_method
     )

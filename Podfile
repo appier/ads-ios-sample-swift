@@ -13,4 +13,5 @@ target 'AppierAdsSwiftSample' do
   if $UsingCocoaPodsAppierFramework
     pod 'AppierAds'
   end
+  pod 'AppLovinSDK'
 end

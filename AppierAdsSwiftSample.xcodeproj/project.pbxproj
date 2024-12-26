@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2C6FF6E87720A9B2BD3C95C9 /* AppierAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCF56C26E433C07D21E11E19 /* AppierAds.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C9CCE205EBE47D36CCD0879 /* Pods_AppierAdsSwiftSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E9563527B30D79EE920073 /* Pods_AppierAdsSwiftSample.framework */; };
+		8A252CF12D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A252CF02D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift */; };
+		8A252CF32D1C05850034FBD9 /* ALNativeManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A252CF22D1C05850034FBD9 /* ALNativeManualViewController.swift */; };
+		8A252CF52D1C35CA0034FBD9 /* ALNativeManualAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A252CF42D1C35CA0034FBD9 /* ALNativeManualAdView.xib */; };
+		8AF9634B2D1AA9EA00B21629 /* AppierMediationAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9634A2D1AA9EA00B21629 /* AppierMediationAdapter.m */; };
+		8AF9634F2D1AAB1A00B21629 /* ALBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9634E2D1AAB1A00B21629 /* ALBannerViewController.swift */; };
+		8AF963512D1AACB400B21629 /* ALInterstitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF963502D1AACB400B21629 /* ALInterstitialViewController.swift */; };
+		8AF963532D1AACD000B21629 /* ALNativeSmallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF963522D1AACD000B21629 /* ALNativeSmallViewController.swift */; };
 		A0E09E16EAA65FFE54F85CA0 /* AppierAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF56C26E433C07D21E11E19 /* AppierAds.framework */; platformFilter = ios; };
 		F5CCF2D62D029D640079FDB1 /* AdMobNativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2AD2D029D640079FDB1 /* AdMobNativeViewController.swift */; };
 		F5CCF2D72D029D640079FDB1 /* AppierAdsBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2AF2D029D640079FDB1 /* AppierAdsBannerAdViewController.swift */; };
@@ -56,8 +64,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04E9563527B30D79EE920073 /* Pods_AppierAdsSwiftSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppierAdsSwiftSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08AE250BA438100C6488BF3C /* AppierAdsSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppierAdsSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A987EED4D6B1AB997458867 /* AppierAdsAdMobMediation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppierAdsAdMobMediation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		858EBAA97F34B98794243268 /* Pods-AppierAdsSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppierAdsSwiftSample.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
+		8A252CF02D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALNativeMediumViewController.swift; sourceTree = "<group>"; };
+		8A252CF22D1C05850034FBD9 /* ALNativeManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALNativeManualViewController.swift; sourceTree = "<group>"; };
+		8A252CF42D1C35CA0034FBD9 /* ALNativeManualAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ALNativeManualAdView.xib; sourceTree = "<group>"; };
+		8AF963482D1AA9E900B21629 /* AppierAdsSwiftSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppierAdsSwiftSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		8AF963492D1AA9EA00B21629 /* AppierMediationAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppierMediationAdapter.h; sourceTree = "<group>"; };
+		8AF9634A2D1AA9EA00B21629 /* AppierMediationAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppierMediationAdapter.m; sourceTree = "<group>"; };
+		8AF9634E2D1AAB1A00B21629 /* ALBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALBannerViewController.swift; sourceTree = "<group>"; };
+		8AF963502D1AACB400B21629 /* ALInterstitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALInterstitialViewController.swift; sourceTree = "<group>"; };
+		8AF963522D1AACD000B21629 /* ALNativeSmallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALNativeSmallViewController.swift; sourceTree = "<group>"; };
+		BDD6A531B43B85F35FF1FB13 /* Pods-AppierAdsSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppierAdsSwiftSample.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
 		DCF56C26E433C07D21E11E19 /* AppierAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppierAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5CCF2AD2D029D640079FDB1 /* AdMobNativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdMobNativeViewController.swift; sourceTree = "<group>"; };
 		F5CCF2AF2D029D640079FDB1 /* AppierAdsBannerAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppierAdsBannerAdViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0E09E16EAA65FFE54F85CA0 /* AppierAds.framework in Frameworks */,
+				7C9CCE205EBE47D36CCD0879 /* Pods_AppierAdsSwiftSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +131,47 @@
 			children = (
 				F5CCF2D52D029D640079FDB1 /* AppierAdsSwiftSample */,
 				BC43BC531B3B4781D5756DE5 /* Products */,
+				DF9134BDF20D73D5A4334D1D /* Pods */,
+				9AE0FFF2A3B324F49DFE680C /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		8AF9634D2D1AAAC900B21629 /* AppLovinMediation */ = {
+			isa = PBXGroup;
+			children = (
+				8AF963552D1AF0C000B21629 /* Adpater */,
+				8AF963542D1AF0AB00B21629 /* Views */,
+			);
+			path = AppLovinMediation;
+			sourceTree = "<group>";
+		};
+		8AF963542D1AF0AB00B21629 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8AF9634E2D1AAB1A00B21629 /* ALBannerViewController.swift */,
+				8AF963502D1AACB400B21629 /* ALInterstitialViewController.swift */,
+				8A252CF22D1C05850034FBD9 /* ALNativeManualViewController.swift */,
+				8A252CF02D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift */,
+				8AF963522D1AACD000B21629 /* ALNativeSmallViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8AF963552D1AF0C000B21629 /* Adpater */ = {
+			isa = PBXGroup;
+			children = (
+				8AF963492D1AA9EA00B21629 /* AppierMediationAdapter.h */,
+				8AF9634A2D1AA9EA00B21629 /* AppierMediationAdapter.m */,
+			);
+			path = Adpater;
+			sourceTree = "<group>";
+		};
+		9AE0FFF2A3B324F49DFE680C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04E9563527B30D79EE920073 /* Pods_AppierAdsSwiftSample.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BC43BC531B3B4781D5756DE5 /* Products */ = {
@@ -121,6 +182,15 @@
 				08AE250BA438100C6488BF3C /* AppierAdsSwiftSample.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DF9134BDF20D73D5A4334D1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BDD6A531B43B85F35FF1FB13 /* Pods-AppierAdsSwiftSample.debug.xcconfig */,
+				858EBAA97F34B98794243268 /* Pods-AppierAdsSwiftSample.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		F5CCF2AE2D029D640079FDB1 /* AdMobMediation */ = {
@@ -151,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				F5CCF2AE2D029D640079FDB1 /* AdMobMediation */,
+				8AF9634D2D1AAAC900B21629 /* AppLovinMediation */,
 				F5CCF2F22D029FB50079FDB1 /* SDKStandalone */,
 				F5CCF2BE2D029D640079FDB1 /* BaseNativeAdViewController.swift */,
 			);
@@ -178,6 +249,7 @@
 			children = (
 				F5CCF2B82D029D640079FDB1 /* AdMobMediumNativeAdView.xib */,
 				F5CCF2B92D029D640079FDB1 /* AdTableHeaderView.xib */,
+				8A252CF42D1C35CA0034FBD9 /* ALNativeManualAdView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +310,7 @@
 				F5CCF2C82D029D640079FDB1 /* Models */,
 				F5CCF2CF2D029D640079FDB1 /* Sources */,
 				F5CCF2CD2D029D640079FDB1 /* AppDelegate.swift */,
+				8AF963482D1AA9E900B21629 /* AppierAdsSwiftSample-Bridging-Header.h */,
 				F5CCF2D02D029D640079FDB1 /* Assets.xcassets */,
 				F5CCF2CE2D029D640079FDB1 /* GADNativeAd.h */,
 				F5CCF2D12D029D640079FDB1 /* Info.plist */,
@@ -289,12 +362,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E1C7D2BA1B65BECA392840C /* Build configuration list for PBXNativeTarget "AppierAdsSwiftSample" */;
 			buildPhases = (
+				61C3BB80742C5D047FAABA97 /* [CP] Check Pods Manifest.lock */,
 				A37CE9A366AE093ED3A1111C /* Sources */,
 				56DE2999449550DF9C3FE48E /* Resources */,
 				CF484C599EB68F786BBA3A80 /* Embed Precompiled Frameworks */,
 				911C5AAEB02EFEE3736B814F /* Embed Frameworks */,
 				E7F371A4FE95BF41CE6C67C3 /* Frameworks */,
 				23DE53AEA43BE2E97F05EC3B /* SwiftLint */,
+				00214400CDED5A0A93367991 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,6 +387,11 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "Appier Inc.";
+				TargetAttributes = {
+					F01D05D80CC04D8708BD26C1 = {
+						LastSwiftMigration = 1540;
+					};
+				};
 			};
 			buildConfigurationList = AEE0925A02DE584218D09D1D /* Build configuration list for PBXProject "AppierAdsSwiftSample" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -339,6 +419,7 @@
 				F5CCF2DC2D029D640079FDB1 /* AdMobMediumNativeAdView.xib in Resources */,
 				F5CCF2DD2D029D640079FDB1 /* AdTableHeaderView.xib in Resources */,
 				F5CCF2DE2D029D640079FDB1 /* AdTableViewController.xib in Resources */,
+				8A252CF52D1C35CA0034FBD9 /* ALNativeManualAdView.xib in Resources */,
 				F5CCF2EB2D029D640079FDB1 /* Assets.xcassets in Resources */,
 				F5CCF2DF2D029D640079FDB1 /* BaseNativeAdViewController.xib in Resources */,
 				F5CCF2D92D029D640079FDB1 /* illustration_banner.png in Resources */,
@@ -357,6 +438,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00214400CDED5A0A93367991 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		23DE53AEA43BE2E97F05EC3B /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,6 +472,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$SRCROOT\"/scripts/lint.sh \n";
+		};
+		61C3BB80742C5D047FAABA97 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppierAdsSwiftSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		CF484C599EB68F786BBA3A80 /* Embed Precompiled Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -401,11 +521,17 @@
 				F5CCF2D62D029D640079FDB1 /* AdMobNativeViewController.swift in Sources */,
 				F5CCF2E82D029D640079FDB1 /* AdTableHeaderView.swift in Sources */,
 				F5CCF2E12D029D640079FDB1 /* AdTableViewController.swift in Sources */,
+				8AF9634F2D1AAB1A00B21629 /* ALBannerViewController.swift in Sources */,
+				8AF963512D1AACB400B21629 /* ALInterstitialViewController.swift in Sources */,
+				8A252CF32D1C05850034FBD9 /* ALNativeManualViewController.swift in Sources */,
+				8A252CF12D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift in Sources */,
+				8AF963532D1AACD000B21629 /* ALNativeSmallViewController.swift in Sources */,
 				F5CCF2EA2D029D640079FDB1 /* AppDelegate.swift in Sources */,
 				F5CCF2F52D029FF80079FDB1 /* AppierAdNativeAdViewController.swift in Sources */,
 				F5CCF2D72D029D640079FDB1 /* AppierAdsBannerAdViewController.swift in Sources */,
 				F5CCF2D82D029D640079FDB1 /* AppierAdsInterstitialViewController.swift in Sources */,
 				F5CCF2E32D029D640079FDB1 /* AppierColor.swift in Sources */,
+				8AF9634B2D1AA9EA00B21629 /* AppierMediationAdapter.m in Sources */,
 				F5CCF2E42D029D640079FDB1 /* APRLogger.swift in Sources */,
 				F5CCF2E02D029D640079FDB1 /* BaseNativeAdViewController.swift in Sources */,
 				F5CCF2E22D029D640079FDB1 /* MainViewController.swift in Sources */,
@@ -487,13 +613,13 @@
 		};
 		C86DFFA24DBFC9BFB3CD9C9C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 858EBAA97F34B98794243268 /* Pods-AppierAdsSwiftSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V72QYCH5UU;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V72QYCH5UU;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ./AppierAdsSwiftSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -505,10 +631,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.appier.AppierAdsSwiftSample;
 				PRODUCT_NAME = AppierAdsSwiftSample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AdHoc com.appier.AppierAdsSwiftSample";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "AppierAdsSwiftSample/AppierAdsSwiftSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.10;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -568,9 +694,12 @@
 		};
 		DC89CAA086F5AB13683956CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDD6A531B43B85F35FF1FB13 /* Pods-AppierAdsSwiftSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V72QYCH5UU;
@@ -585,11 +714,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.appier.AppierAdsSwiftSample;
 				PRODUCT_NAME = AppierAdsSwiftSample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.appier.AppierAdsSwiftSample 1711617665";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.appier.AppierAdsSwiftSample";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OBJC_BRIDGING_HEADER = "AppierAdsSwiftSample/AppierAdsSwiftSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.10;
 				TARGETED_DEVICE_FAMILY = "1,2";

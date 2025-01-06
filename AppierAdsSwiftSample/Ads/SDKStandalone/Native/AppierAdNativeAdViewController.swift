@@ -44,7 +44,7 @@ class AppierAdNativeAdViewController: BaseNativeAdViewController {
     }
 }
 
-extension AppierAdNativeAdViewController: NativeAdDelegate {
+extension AppierAdNativeAdViewController: APRNativeAdDelegate {
     func onAdLoaded(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
         DispatchQueue.main.async {
@@ -80,4 +80,3 @@ extension AppierAdNativeAdViewController: NativeAdDelegate {
         print(#function)
     }
 }
-

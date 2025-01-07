@@ -193,7 +193,7 @@ class AdMobNativeViewController: BaseNativeAdViewController {
 //    }
 //}
 
-extension AdMobNativeViewController: NativeAdDelegate {
+extension AdMobNativeViewController: APRNativeAdDelegate {
     func onAdLoaded(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
         DispatchQueue.main.async {

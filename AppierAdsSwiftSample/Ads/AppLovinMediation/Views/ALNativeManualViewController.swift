@@ -25,8 +25,8 @@ class ALNativeManualViewController: UIViewController {
         ])
         
         let nativeAdViewNib = UINib(nibName: "ALNativeManualAdView", bundle: Bundle.main)
-        nativeAdView = nativeAdViewNib.instantiate(withOwner: nil, options: nil).first! as! MANativeAdView?
-        
+        nativeAdView = nativeAdViewNib.instantiate(withOwner: nil, options: nil).first! as? MANativeAdView
+
         let adViewBinder = MANativeAdViewBinder(builderBlock: { builder in
             builder.titleLabelTag = 1001
 //            builder.advertiserLabelTag = 1002

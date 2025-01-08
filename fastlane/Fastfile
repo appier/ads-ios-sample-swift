@@ -177,6 +177,75 @@ platform :ios do
 
   end
 
+  lane :develop_mode do |options|
+    environment_variable(set: { "APPIER_FRAMEWORK_SOURCE_COCOAPODS" => "YES" })
+
+    use_local = options[:use_local] || false
+    
+    # Define the local paths for the pods
+    local_appier_ads_path = "../appier-ads-ios"
+    local_applovin_mediation_path = "../appier-applovin-ios-mediation"
+  
+    switch_pod_reference(pod_name: 'AppierAds',
+                         local_path: local_appier_ads_path,
+                         use_local_path: use_local)
+
+    switch_pod_reference(pod_name: 'AppierAdsApplovinMediation',
+                         local_path: local_applovin_mediation_path,
+                         use_local_path: use_local)
+  
+    # Run pod install
+    cocoapods
+  end
+
+  private_lane :switch_pod_reference do |options|
+    # Ensure required parameters are provided
+    pod_name = options[:pod_name] || UI.user_error!("Missing 'pod_name' parameter.")
+    local_path = options[:local_path] || "./"
+    use_local_path = options[:use_local_path] || false
+  
+    if pod_name.nil? || use_local_path.nil?
+      UI.user_error!("You must provide `pod_name` and `use_local_path` parameters.")
+    end
+  
+    # Define the path to the Podfile
+    podfile_path = "../Podfile"
+  
+    # Read the current Podfile content
+    podfile_content = File.read(podfile_path)
+  
+    # Check if the Podfile matches the desired state
+    if use_local_path
+      if podfile_content.match?(/pod '#{pod_name}'.*?:path =>/)
+        UI.message "The pod '#{pod_name}' is already using the local path. No changes needed."
+      else
+        # Switch to local path reference
+        UI.message "Switching '#{pod_name}' to use local path '#{local_path}'."
+        podfile_content.gsub!(
+          /pod '#{pod_name}'.*$/,
+          "pod '#{pod_name}', :path => '#{local_path}'"
+        )
+        # Write the updated content back to the Podfile
+        File.write(podfile_path, podfile_content)
+        UI.success "Updated '#{pod_name}' to use local path!"
+      end
+    else
+      if podfile_content.match?(/pod '#{pod_name}'[^:]*$/)
+        UI.message "The pod '#{pod_name}' is already using the CocoaPods reference. No changes needed."
+      else
+        # Switch to CocoaPods reference
+        UI.message "Switching '#{pod_name}' to use CocoaPods reference."
+        podfile_content.gsub!(
+          /pod '#{pod_name}'.*$/,
+          "pod '#{pod_name}'"
+        )
+        # Write the updated content back to the Podfile
+        File.write(podfile_path, podfile_content)
+        UI.success "Updated '#{pod_name}' to use CocoaPods reference!"
+      end
+    end
+  end
+
   lane :install_local_framework do |options|
     framework_path = options[:framework_path]
 

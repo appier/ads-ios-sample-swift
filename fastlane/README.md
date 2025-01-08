@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios setup_and_build
+
+```sh
+[bundle exec] fastlane ios setup_and_build
+```
+
+Xcode project setup and build ipa file
+
 ### ios generate
 
 ```sh
@@ -29,7 +37,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios build
 ```
 
-Build App Store distribution
+Build ipa file
 
 ### ios download_public_release
 
@@ -43,6 +51,14 @@ Download public release from GitHub
 
 ```sh
 [bundle exec] fastlane ios install_framework_with_cocoapods
+```
+
+
+
+### ios develop_mode
+
+```sh
+[bundle exec] fastlane ios develop_mode
 ```
 
 

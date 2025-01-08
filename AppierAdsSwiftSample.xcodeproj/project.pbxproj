@@ -7,16 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C6FF6E87720A9B2BD3C95C9 /* AppierAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCF56C26E433C07D21E11E19 /* AppierAds.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C9CCE205EBE47D36CCD0879 /* Pods_AppierAdsSwiftSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E9563527B30D79EE920073 /* Pods_AppierAdsSwiftSample.framework */; };
 		8A252CF12D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A252CF02D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift */; };
 		8A252CF32D1C05850034FBD9 /* ALNativeManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A252CF22D1C05850034FBD9 /* ALNativeManualViewController.swift */; };
 		8A252CF52D1C35CA0034FBD9 /* ALNativeManualAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A252CF42D1C35CA0034FBD9 /* ALNativeManualAdView.xib */; };
-		8AF9634B2D1AA9EA00B21629 /* AppierMediationAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9634A2D1AA9EA00B21629 /* AppierMediationAdapter.m */; };
 		8AF9634F2D1AAB1A00B21629 /* ALBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9634E2D1AAB1A00B21629 /* ALBannerViewController.swift */; };
 		8AF963512D1AACB400B21629 /* ALInterstitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF963502D1AACB400B21629 /* ALInterstitialViewController.swift */; };
 		8AF963532D1AACD000B21629 /* ALNativeSmallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF963522D1AACD000B21629 /* ALNativeSmallViewController.swift */; };
-		A0E09E16EAA65FFE54F85CA0 /* AppierAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF56C26E433C07D21E11E19 /* AppierAds.framework */; platformFilter = ios; };
 		F5CCF2D62D029D640079FDB1 /* AdMobNativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2AD2D029D640079FDB1 /* AdMobNativeViewController.swift */; };
 		F5CCF2D72D029D640079FDB1 /* AppierAdsBannerAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2AF2D029D640079FDB1 /* AppierAdsBannerAdViewController.swift */; };
 		F5CCF2D82D029D640079FDB1 /* AppierAdsInterstitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCF2B12D029D640079FDB1 /* AppierAdsInterstitialViewController.swift */; };
@@ -49,35 +46,19 @@
 		F5CCF3022D02A5C70079FDB1 /* illustration_interstitial_step2.png in Resources */ = {isa = PBXBuildFile; fileRef = F5CCF3012D02A5C70079FDB1 /* illustration_interstitial_step2.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		911C5AAEB02EFEE3736B814F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2C6FF6E87720A9B2BD3C95C9 /* AppierAds.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		04E9563527B30D79EE920073 /* Pods_AppierAdsSwiftSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppierAdsSwiftSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08AE250BA438100C6488BF3C /* AppierAdsSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppierAdsSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A987EED4D6B1AB997458867 /* AppierAdsAdMobMediation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppierAdsAdMobMediation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		858EBAA97F34B98794243268 /* Pods-AppierAdsSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppierAdsSwiftSample.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
+		858EBAA97F34B98794243268 /* Pods-AppierAdsSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppierAdsSwiftSample.release.xcconfig"; path = "Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
 		8A252CF02D1BFDBA0034FBD9 /* ALNativeMediumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALNativeMediumViewController.swift; sourceTree = "<group>"; };
 		8A252CF22D1C05850034FBD9 /* ALNativeManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALNativeManualViewController.swift; sourceTree = "<group>"; };
 		8A252CF42D1C35CA0034FBD9 /* ALNativeManualAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ALNativeManualAdView.xib; sourceTree = "<group>"; };
 		8AF963482D1AA9E900B21629 /* AppierAdsSwiftSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppierAdsSwiftSample-Bridging-Header.h"; sourceTree = "<group>"; };
-		8AF963492D1AA9EA00B21629 /* AppierMediationAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppierMediationAdapter.h; sourceTree = "<group>"; };
-		8AF9634A2D1AA9EA00B21629 /* AppierMediationAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppierMediationAdapter.m; sourceTree = "<group>"; };
 		8AF9634E2D1AAB1A00B21629 /* ALBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALBannerViewController.swift; sourceTree = "<group>"; };
 		8AF963502D1AACB400B21629 /* ALInterstitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALInterstitialViewController.swift; sourceTree = "<group>"; };
 		8AF963522D1AACD000B21629 /* ALNativeSmallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALNativeSmallViewController.swift; sourceTree = "<group>"; };
-		BDD6A531B43B85F35FF1FB13 /* Pods-AppierAdsSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppierAdsSwiftSample.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
+		BDD6A531B43B85F35FF1FB13 /* Pods-AppierAdsSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppierAdsSwiftSample.debug.xcconfig"; path = "Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
 		DCF56C26E433C07D21E11E19 /* AppierAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppierAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5CCF2AD2D029D640079FDB1 /* AdMobNativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdMobNativeViewController.swift; sourceTree = "<group>"; };
 		F5CCF2AF2D029D640079FDB1 /* AppierAdsBannerAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppierAdsBannerAdViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0E09E16EAA65FFE54F85CA0 /* AppierAds.framework in Frameworks */,
 				7C9CCE205EBE47D36CCD0879 /* Pods_AppierAdsSwiftSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,7 +119,6 @@
 		8AF9634D2D1AAAC900B21629 /* AppLovinMediation */ = {
 			isa = PBXGroup;
 			children = (
-				8AF963552D1AF0C000B21629 /* Adpater */,
 				8AF963542D1AF0AB00B21629 /* Views */,
 			);
 			path = AppLovinMediation;
@@ -155,15 +134,6 @@
 				8AF963522D1AACD000B21629 /* ALNativeSmallViewController.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		8AF963552D1AF0C000B21629 /* Adpater */ = {
-			isa = PBXGroup;
-			children = (
-				8AF963492D1AA9EA00B21629 /* AppierMediationAdapter.h */,
-				8AF9634A2D1AA9EA00B21629 /* AppierMediationAdapter.m */,
-			);
-			path = Adpater;
 			sourceTree = "<group>";
 		};
 		9AE0FFF2A3B324F49DFE680C /* Frameworks */ = {
@@ -366,7 +336,6 @@
 				A37CE9A366AE093ED3A1111C /* Sources */,
 				56DE2999449550DF9C3FE48E /* Resources */,
 				CF484C599EB68F786BBA3A80 /* Embed Precompiled Frameworks */,
-				911C5AAEB02EFEE3736B814F /* Embed Frameworks */,
 				E7F371A4FE95BF41CE6C67C3 /* Frameworks */,
 				23DE53AEA43BE2E97F05EC3B /* SwiftLint */,
 				00214400CDED5A0A93367991 /* [CP] Embed Pods Frameworks */,
@@ -531,7 +500,6 @@
 				F5CCF2D72D029D640079FDB1 /* AppierAdsBannerAdViewController.swift in Sources */,
 				F5CCF2D82D029D640079FDB1 /* AppierAdsInterstitialViewController.swift in Sources */,
 				F5CCF2E32D029D640079FDB1 /* AppierColor.swift in Sources */,
-				8AF9634B2D1AA9EA00B21629 /* AppierMediationAdapter.m in Sources */,
 				F5CCF2E42D029D640079FDB1 /* APRLogger.swift in Sources */,
 				F5CCF2E02D029D640079FDB1 /* BaseNativeAdViewController.swift in Sources */,
 				F5CCF2E22D029D640079FDB1 /* MainViewController.swift in Sources */,

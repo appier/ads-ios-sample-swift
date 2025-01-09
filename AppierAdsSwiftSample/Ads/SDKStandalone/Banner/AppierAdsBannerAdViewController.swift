@@ -152,23 +152,23 @@ extension AppierAdsBannerAdViewController: APRBannerAdDelegate {
             setBannerConstraint(bannerView: banner, parentView: banner320x480)
         }
     }
-    
+
     func onAdLoadedFailed(_ bannerAd: AppierAds.APRBannerAd, error: AppierAds.APRError) {
         print(#function)
     }
-    
+
     func onAdImpressionRecorded(_ bannerAd: AppierAds.APRBannerAd) {
         print(#function)
     }
-    
+
     func onAdImpressionRecordedFailed(_ bannerAd: AppierAds.APRBannerAd, error: AppierAds.APRError) {
         print(#function)
     }
-    
+
     func onAdClickedRecorded(_ bannerAd: AppierAds.APRBannerAd) {
         print(#function)
     }
-    
+
     func onAdClickedRecordedFailed(_ bannerAd: AppierAds.APRBannerAd, error: AppierAds.APRError) {
         print(#function)
     }

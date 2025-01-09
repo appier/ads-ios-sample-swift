@@ -21,7 +21,7 @@ class MainViewController: UITabBarController {
             AdDataSource(header: .init(title: "Interstitial", image: .init(named: "illustration_interstitial.png")!),
                          cells: [.init(title: "basic", ctrCls: AppierAdsInterstitialViewController.self)])
         ])
-        
+
         // AppLovin Mediation
         let appLovinMediationViewController = createAdController(title: "AppLovin Mediation", dataSource: [
             AdDataSource(header: .init(title: "Native", image: .init(named: "illustration_native.png")!),

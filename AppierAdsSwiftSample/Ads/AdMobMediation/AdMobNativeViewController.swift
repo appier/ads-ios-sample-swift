@@ -1,10 +1,10 @@
 import UIKit
 import AppierAds
-//import GoogleMobileAds
-//import AppierAdsAdMobMediation
+// import GoogleMobileAds
+// import AppierAdsAdMobMediation
 
 class AdMobNativeViewController: BaseNativeAdViewController {
-//    var adLoader: GADAdLoader!
+    //    var adLoader: GADAdLoader!
     var adNativeAd: APRNativeAd! // Loader
     var nativeAdView: StandaloneNativeAdView!
 
@@ -14,12 +14,12 @@ class AdMobNativeViewController: BaseNativeAdViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        guard let nibObjects = Bundle.main.loadNibNamed(
-//            String(describing: AdMobMediumNativeAdView.self), owner: nil, options: nil),
-//              let nativeAdView = nibObjects.first as? GADNativeAdView else {
-//            assert(false, "Could not load nib file for adView")
-//            return
-//        }
+        //        guard let nibObjects = Bundle.main.loadNibNamed(
+        //            String(describing: AdMobMediumNativeAdView.self), owner: nil, options: nil),
+        //              let nativeAdView = nibObjects.first as? GADNativeAdView else {
+        //            assert(false, "Could not load nib file for adView")
+        //            return
+        //        }
 
         let nativeAdView = StandaloneNativeAdView(frame: .zero)
 
@@ -40,7 +40,7 @@ class AdMobNativeViewController: BaseNativeAdViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        nativeAdPlaceholder.isHidden = true
+        //        nativeAdPlaceholder.isHidden = true
 
         /*
          * Initialize AdMob native
@@ -54,15 +54,15 @@ class AdMobNativeViewController: BaseNativeAdViewController {
          */
 
         // Assign self as `eventDelegate` to receive impression/clicked callback events.
-//        APRAdMobAdManager.shared.eventDelegate = self
+        //        APRAdMobAdManager.shared.eventDelegate = self
 
         // Build Request
-//        adLoader = GADAdLoader(
-//            adUnitID: adUnitId,
-//            rootViewController: self,
-//            adTypes: [.native],
-//            options: nil)
-//        adLoader.delegate = self
+        //        adLoader = GADAdLoader(
+        //            adUnitID: adUnitId,
+        //            rootViewController: self,
+        //            adTypes: [.native],
+        //            options: nil)
+        //        adLoader.delegate = self
         let appierExtras = APRAdExtras()
         appierExtras.set(key: .adUnitId, value: adUnitId)
         appierExtras.set(key: .appInfo, value: SampleAppInfo())  // Pass additional information
@@ -75,13 +75,13 @@ class AdMobNativeViewController: BaseNativeAdViewController {
         adNativeAd.loadAd()
 
         // Load Ad
-//        let request = GADRequest()
-//        request.register(appierExtras)
-//        adLoader.load(request)
+        //        let request = GADRequest()
+        //        request.register(appierExtras)
+        //        adLoader.load(request)
     }
 }
 
-//extension AdMobNativeViewController: GADNativeAdLoaderDelegate {
+// extension AdMobNativeViewController: GADNativeAdLoaderDelegate {
 //    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
 //        APRLogger.controller.debug("\(#function)")
 //        nativeAd.delegate = self
@@ -133,9 +133,9 @@ class AdMobNativeViewController: BaseNativeAdViewController {
 //        APRLogger.controller.debug("\(#function)")
 //        APRLogger.controller.debug("\(error)")
 //    }
-//}
+// }
 
-//extension AdMobNativeViewController: GADNativeAdDelegate {
+// extension AdMobNativeViewController: GADNativeAdDelegate {
 //    func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
 //        APRLogger.controller.debug("\(#function)")
 //    }
@@ -143,9 +143,9 @@ class AdMobNativeViewController: BaseNativeAdViewController {
 //    func nativeAdDidRecordClick(_ nativeAd: GADNativeAd) {
 //        APRLogger.controller.debug("\(#function)")
 //    }
-//}
+// }
 
-//extension AdMobNativeViewController: APRAdMobAdEventDelegate {
+// extension AdMobNativeViewController: APRAdMobAdEventDelegate {
 //    func onNativeAdImpressionRecorded(nativeAd: APRAdMobNativeAd) {
 //        APRLogger.controller.debug("\(#function)")
 //        APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")
@@ -191,7 +191,7 @@ class AdMobNativeViewController: BaseNativeAdViewController {
 //        }
 //        APRLogger.controller.debug("\(error)")
 //    }
-//}
+// }
 
 extension AdMobNativeViewController: APRNativeAdDelegate {
     func onAdLoaded(_ nativeAd: AppierAds.APRNativeAd) {
@@ -200,7 +200,7 @@ extension AdMobNativeViewController: APRNativeAdDelegate {
             nativeAd.render()
         }
     }
-    
+
     func onAdLoadedFailed(_ nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
         print(#function)
     }
@@ -216,15 +216,15 @@ extension AdMobNativeViewController: APRNativeAdDelegate {
     func onAdImpressionRecorded(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
     }
-    
+
     func onAdImpressionRecordedFailed(_ nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
         print(#function)
     }
-    
+
     func onAdClickedRecorded(_ nativeAd: AppierAds.APRNativeAd) {
         print(#function)
     }
-    
+
     func onAdClickedRecordedFailed(_ nativeAd: AppierAds.APRNativeAd, error: AppierAds.APRError) {
         print(#function)
     }

@@ -15,14 +15,28 @@ class MainViewController: UITabBarController {
 
         let sdkStandaloneViewController = createAdController(title: "SDK Standalone", dataSource: [
             AdDataSource(header: .init(title: "Native", image: .init(named: "illustration_native.png")!),
-                         cells: [.init(title: "basic", ctrCls: AdMobNativeViewController.self)]),
+                         cells: [.init(title: "basic", ctrCls: AppierAdNativeAdViewController.self)]),
             AdDataSource(header: .init(title: "banner", image: .init(named: "illustration_banner.png")!),
                          cells: [.init(title: "basic", ctrCls: AppierAdsBannerAdViewController.self)]),
             AdDataSource(header: .init(title: "Interstitial", image: .init(named: "illustration_interstitial.png")!),
                          cells: [.init(title: "basic", ctrCls: AppierAdsInterstitialViewController.self)])
         ])
 
-        self.setViewControllers([sdkStandaloneViewController, adMobMediationController], animated: true)
+        // AppLovin Mediation
+        let appLovinMediationViewController = createAdController(title: "AppLovin Mediation", dataSource: [
+            AdDataSource(header: .init(title: "Native", image: .init(named: "illustration_native.png")!),
+                         cells: [
+                            .init(title: "Template - Small", ctrCls: ALNativeSmallViewController.self),
+                            .init(title: "Template - Medium", ctrCls: ALNativeMediumViewController.self),
+                            .init(title: "Manual", ctrCls: ALNativeManualViewController.self)
+                         ]),
+            AdDataSource(header: .init(title: "Banner", image: .init(named: "illustration_banner.png")!),
+                         cells: [.init(title: "Banner & MREC", ctrCls: ALBannerViewController.self)]),
+            AdDataSource(header: .init(title: "Interstitial", image: .init(named: "illustration_interstitial.png")!),
+                         cells: [.init(title: "Basic", ctrCls: ALInterstitialViewController.self)])
+        ])
+
+        self.setViewControllers([sdkStandaloneViewController, adMobMediationController, appLovinMediationViewController], animated: true)
         self.tabBar.tintColor = .AppierPrimary
         self.tabBar.unselectedItemTintColor = .AppierTextDefault
         self.tabBar.backgroundColor = .AppierTextFaded

@@ -1,18 +1,33 @@
-name: Build App with framework path
+name: Build App with Cocoapods
 
 on:
+  workflow_dispatch:
+    version:
+      type: string
+    # This is the configuration used when building the SDK. Will determine app icon and .ipa file name accordingly.
+    framework_configuration:
+      required: true
+      type: string
+
+    # This is code reference, could use tag, branch, or commit
+    ref:
+      required: true
+      type: string
+
+    output_name:
+      type: string
+      default: "AppierAdsSample"
+
+    distribution_type:
+      required: true
+      type: string
+
   workflow_call:
     inputs:
-      framework_path:
-        required: true
+      version:
         type: string
-        
       # This is the configuration used when building the SDK. Will determine app icon and .ipa file name accordingly.
       framework_configuration:
-        required: true
-        type: string
-        
-      framework_artifact_name:
         required: true
         type: string
         
@@ -27,7 +42,7 @@ on:
       distribution_type:
         required: true
         type: string
-        
+
 jobs:
   build_app_with_framework_path:
     environment: ENV
@@ -40,12 +55,6 @@ jobs:
         token: '${{ secrets.GH_TOKEN }}'
         repository: 'appier/ads-ios-sample-swift'
         ref: '${{ inputs.ref }}'
-        
-    - name: Download framework from artifact
-      uses: actions/download-artifact@master
-      with:
-        name: '${{ inputs.framework_artifact_name }}'
-        path: '${{ github.workspace }}/artifacts/'
       
     - name: Prepar for xcode build
       uses: appier/appier-ios/.github/actions/prepare_for_xcode_build@develop
@@ -62,9 +71,9 @@ jobs:
         APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
       run: |
         bundle exec fastlane setup_and_build \
-          framework_source:path \
+          version: ${{ inputs.version }} \
+          framework_source:pod \
           distribution_type:${{ inputs.distribution_type }} \
-          framework_path:${{ github.workspace }}/artifacts/${{ inputs.framework_path }} \
           framework_configuration:${{ inputs.framework_configuration }} \
           output_name:${{ inputs.output_name }}
           

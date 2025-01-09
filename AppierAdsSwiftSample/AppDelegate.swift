@@ -1,6 +1,7 @@
 import UIKit
 import AppierAds
-//import GoogleMobileAds
+import AppLovinSDK
+// import GoogleMobileAds
 import AppTrackingTransparency
 
 let keyAPRAdsTestMode = "APRAds_testMode"
@@ -15,12 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         initAppierAds()
-//        GADMobileAds.sharedInstance().start { status in
-//            let adapterStatuses = status.adapterStatusesByClassName
-//            for (adapter, _) in adapterStatuses {
-//                APRLogger.delegate.debug("Adapter Name: \(adapter)")
-//            }
-//        }
+
+        initAppLovinSDK()
+
+        //        GADMobileAds.sharedInstance().start { status in
+        //            let adapterStatuses = status.adapterStatusesByClassName
+        //            for (adapter, _) in adapterStatuses {
+        //                APRLogger.delegate.debug("Adapter Name: \(adapter)")
+        //            }
+        //        }
         window = UIWindow(frame: UIScreen.main.bounds)
         let viewController = MainViewController()
         window?.rootViewController = viewController
@@ -45,6 +49,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Appier Ads SDK
         APRAds.shared.start { completion in
             APRLogger.delegate.info("complete to initialize Appier Ads SDK: \(completion)")
+        }
+    }
+
+    private func initAppLovinSDK() {
+        let yourSDKKey = "5PRz32n_vi41LTITQC4JcXSXUSnkUMxWXVotDbWPTGCDKPuN3zSU7JCa17XDiSJ6RacLhIVyG5JU25SMz_hyOW"
+
+        // Create the initialization configuration
+        let initConfig = ALSdkInitializationConfiguration(sdkKey: yourSDKKey) { builder in
+            builder.mediationProvider = "Appier"
+        }
+
+        // Initialize the SDK with the configuration
+        ALSdk.shared().initialize(with: initConfig) { _ in
+            // AppLovin SDK is initialized, start loading ads now or later if ad gate is reached
+            APRLogger.delegate.debug("AppLovin SDK initiailzed")
         }
     }
 

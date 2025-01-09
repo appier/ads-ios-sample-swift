@@ -20,6 +20,28 @@ platform :ios do
     ENV["FASTLANE_XCODE_LIST_TIMEOUT"] = "180"
   end
 
+  desc "Switch cocoapods reference, use_local: Bool"
+  lane :develop_mode do |options|
+    environment_variable(set: { "APPIER_FRAMEWORK_SOURCE_COCOAPODS" => "YES" })
+
+    use_local = options[:use_local] || false
+    
+    # Define the local paths for the pods
+    local_appier_ads_path = "../appier-ads-ios"
+    local_applovin_mediation_path = "../appier-applovin-ios-mediation"
+  
+    switch_pod_reference(pod_name: 'AppierAds',
+                         local_path: local_appier_ads_path,
+                         use_local_path: use_local)
+
+    switch_pod_reference(pod_name: 'AppierAdsApplovinMediation',
+                         local_path: local_applovin_mediation_path,
+                         use_local_path: use_local)
+  
+    # Run pod install
+    cocoapods
+  end
+
   desc "Xcode project setup and build ipa file"
   lane :setup_and_build do |options|
     generate(options)
@@ -102,45 +124,14 @@ platform :ios do
     )
   end
 
-  desc "Download public release from GitHub"
-  lane :download_public_release do |options|
-
-    version = options.fetch(:version, ".")
-
-    output_directory = "../#{options.fetch(:output_directory, ".")}"
-
-    Dir.chdir("..") do
-      sh("mkdir", "-p", output_directory)
-
-      UI.message "Downloading to #{output_directory}"
-      UI.message "Version: #{version}"
-
-      output_path = "#{output_directory}/AppierAdMobMediationFramework.zip"
-      download_url = "https://github.com/appier/ads-ios-sdk/releases/download/#{version}/AppierAdMobMediationFramework.zip"
-
-      local_directory = File.dirname(output_path)
-      FileUtils.mkdir_p(local_directory) unless File.directory?(local_directory)
-      downloaded_file = URI.open(download_url)
-      File.open(output_path, 'wb') do |file|
-        file.write(downloaded_file.read)
-      end
-
-      UI.success "Archive downloaded to #{output_directory}/AppierAdMobMediationFramework.zip"
-
-      sh("unzip", "-o", "#{output_directory}/AppierAdMobMediationFramework.zip", "-d", "#{output_directory}")
-
-      UI.success "Archive extracted to #{output_directory}"
-    end
-  end
-
   private_lane :install_framework do |options|
     framework_source = options[:framework_source] || 'pod'
 
     case framework_source
-    when 'path', 'github'
-      install_local_framework(options)
-    when 'swiftpm'
-      install_framework_with_spm(options)
+    # when 'path', 'github'
+    #   install_local_framework(options)
+    # when 'swiftpm'
+      # install_framework_with_spm(options)
     when 'pod'
       install_framework_with_cocoapods(options)
     else
@@ -161,11 +152,14 @@ platform :ios do
     # If a new version is specified, set it; otherwise, remove any version constraint
     unless new_version.nil?
       # Set the new version for the specified framework
-      updated_content = podfile_content.gsub(/pod 'AppierAds'(, '.*?')?/, "pod 'AppierAds', '#{new_version}'")
+      updated_content = podfile_content.gsub(/pod 'AppierAds'.*$/, "pod 'AppierAds', '#{new_version}'")
     else
       # Remove the version constraint entirely for the specified framework
-      updated_content = podfile_content.gsub(/pod 'AppierAds'(, '.*?')?/, "pod 'AppierAds'")
+      updated_content = podfile_content.gsub(/pod 'AppierAds'.*$/, "pod 'AppierAds'")
     end
+
+    updated_content = podfile_content.gsub(/pod 'AppierAdsApplovinMediation'.*$/, "pod 'AppierAdsApplovinMediation'")
+    
     # Write the updated content back to the Podfile
     File.open(podfile_path, 'w') { |file| file.puts updated_content }
   
@@ -177,62 +171,93 @@ platform :ios do
 
   end
 
-  lane :install_local_framework do |options|
-    framework_path = options[:framework_path]
+  # desc "Download public release from GitHub"
+  # lane :download_public_release do |options|
 
-    environment_variable(set: { "APPIER_FRAMEWORK_SOURCE_COCOAPODS" => "NO" })
+  #   version = options.fetch(:version, ".")
 
-    project = Xcodeproj::Project.open('../AppierAdsSwiftSample.xcodeproj')
+  #   output_directory = "../#{options.fetch(:output_directory, ".")}"
+
+  #   Dir.chdir("..") do
+  #     sh("mkdir", "-p", output_directory)
+
+  #     UI.message "Downloading to #{output_directory}"
+  #     UI.message "Version: #{version}"
+
+  #     output_path = "#{output_directory}/AppierAdMobMediationFramework.zip"
+  #     download_url = "https://github.com/appier/ads-ios-sdk/releases/download/#{version}/AppierAdMobMediationFramework.zip"
+
+  #     local_directory = File.dirname(output_path)
+  #     FileUtils.mkdir_p(local_directory) unless File.directory?(local_directory)
+  #     downloaded_file = URI.open(download_url)
+  #     File.open(output_path, 'wb') do |file|
+  #       file.write(downloaded_file.read)
+  #     end
+
+  #     UI.success "Archive downloaded to #{output_directory}/AppierAdMobMediationFramework.zip"
+
+  #     sh("unzip", "-o", "#{output_directory}/AppierAdMobMediationFramework.zip", "-d", "#{output_directory}")
+
+  #     UI.success "Archive extracted to #{output_directory}"
+  #   end
+  # end
+
+  # lane :install_local_framework do |options|
+  #   framework_path = options[:framework_path]
+
+  #   environment_variable(set: { "APPIER_FRAMEWORK_SOURCE_COCOAPODS" => "NO" })
+
+  #   project = Xcodeproj::Project.open('../AppierAdsSwiftSample.xcodeproj')
   
-    # Define the targets and their corresponding frameworks
-    targets_and_frameworks = {
-      "AppierAdsSwiftSample" => "AppierAds.xcframework",
-    }
+  #   # Define the targets and their corresponding frameworks
+  #   targets_and_frameworks = {
+  #     "AppierAdsSwiftSample" => "AppierAds.xcframework",
+  #   }
   
-    # Loop through each target and add the corresponding framework
-    targets_and_frameworks.each do |target_name, framework_file|
-      target = project.targets.find { |t| t.name == target_name }
+  #   # Loop through each target and add the corresponding framework
+  #   targets_and_frameworks.each do |target_name, framework_file|
+  #     target = project.targets.find { |t| t.name == target_name }
 
-      if target
-        new_framework_reference = project.new_file("#{framework_path}/#{framework_file}")
+  #     if target
+  #       new_framework_reference = project.new_file("#{framework_path}/#{framework_file}")
 
-        # Check if the framework is already present in the target's frameworks build phase
-        target.frameworks_build_phase.files.find do |file|
-          if file.file_ref && file.file_ref.name == framework_file
-            UI.message("framework exists #{file.file_ref.name}")
-            # If the framework already exists, remove it
-            target.frameworks_build_phase.remove_file_reference(file.file_ref)
-          else
-            UI.message("File ref is nil for a file in the frameworks build phase")
-            false
-          end
-        end
+  #       # Check if the framework is already present in the target's frameworks build phase
+  #       target.frameworks_build_phase.files.find do |file|
+  #         if file.file_ref && file.file_ref.name == framework_file
+  #           UI.message("framework exists #{file.file_ref.name}")
+  #           # If the framework already exists, remove it
+  #           target.frameworks_build_phase.remove_file_reference(file.file_ref)
+  #         else
+  #           UI.message("File ref is nil for a file in the frameworks build phase")
+  #           false
+  #         end
+  #       end
   
-        framework_reference = project.new_file("#{framework_path}/#{framework_file}")
-        target.frameworks_build_phase.add_file_reference(framework_reference)
+  #       framework_reference = project.new_file("#{framework_path}/#{framework_file}")
+  #       target.frameworks_build_phase.add_file_reference(framework_reference)
 
-        # Add the framework to the "Embed Frameworks" phase (set to Embed & Sign)
-        embed_framework_phase = target.build_phases.find { |phase| phase.display_name == 'Embed Frameworks' }
+  #       # Add the framework to the "Embed Frameworks" phase (set to Embed & Sign)
+  #       embed_framework_phase = target.build_phases.find { |phase| phase.display_name == 'Embed Frameworks' }
 
-        if embed_framework_phase.nil?
-          # If no Embed Frameworks phase exists, create one
-          embed_framework_phase = target.new_copy_files_build_phase
-          embed_framework_phase.name = 'Embed Frameworks'
-          embed_framework_phase.dst_subfolder_spec = :frameworks
-        end
+  #       if embed_framework_phase.nil?
+  #         # If no Embed Frameworks phase exists, create one
+  #         embed_framework_phase = target.new_copy_files_build_phase
+  #         embed_framework_phase.name = 'Embed Frameworks'
+  #         embed_framework_phase.dst_subfolder_spec = :frameworks
+  #       end
 
-        # Add the framework to the Embed Frameworks phase
-        embed_framework_phase.add_file_reference(framework_reference)
-        embed_framework_phase.files.last.settings = nil
+  #       # Add the framework to the Embed Frameworks phase
+  #       embed_framework_phase.add_file_reference(framework_reference)
+  #       embed_framework_phase.files.last.settings = nil
 
-        UI.message("Added framework #{framework_file} to Embed Frameworks phase")
-      end
-    end
+  #       UI.message("Added framework #{framework_file} to Embed Frameworks phase")
+  #     end
+  #   end
 
-    project.save
+  #   project.save
 
-    UI.message("Install local frameworks successfully")
-  end
+  #   UI.message("Install local frameworks successfully")
+  # end
 
   lane :clean do |options|
     # Remove CocoaPods
@@ -240,7 +265,6 @@ platform :ios do
       Actions.sh("pod deintegrate")
       Actions.sh('rm -rf Pods/')
       Actions.sh('rm -rf Podfile.lock')
-      Actions.sh('rm -rf .xcworkspace')
     end
 
     # clean_spm_dependencies()
@@ -357,6 +381,54 @@ platform :ios do
       return nil
     else
       return (version.start_with?("v") ? version[1..] : version)
+    end
+  end
+
+  private_lane :switch_pod_reference do |options|
+    # Ensure required parameters are provided
+    pod_name = options[:pod_name] || UI.user_error!("Missing 'pod_name' parameter.")
+    local_path = options[:local_path] || "./"
+    use_local_path = options[:use_local_path] || false
+  
+    if pod_name.nil? || use_local_path.nil?
+      UI.user_error!("You must provide `pod_name` and `use_local_path` parameters.")
+    end
+  
+    # Define the path to the Podfile
+    podfile_path = "../Podfile"
+  
+    # Read the current Podfile content
+    podfile_content = File.read(podfile_path)
+  
+    # Check if the Podfile matches the desired state
+    if use_local_path
+      if podfile_content.match?(/pod '#{pod_name}'.*?:path =>/)
+        UI.message "The pod '#{pod_name}' is already using the local path. No changes needed."
+      else
+        # Switch to local path reference
+        UI.message "Switching '#{pod_name}' to use local path '#{local_path}'."
+        podfile_content.gsub!(
+          /pod '#{pod_name}'.*$/,
+          "pod '#{pod_name}', :path => '#{local_path}'"
+        )
+        # Write the updated content back to the Podfile
+        File.write(podfile_path, podfile_content)
+        UI.success "Updated '#{pod_name}' to use local path!"
+      end
+    else
+      if podfile_content.match?(/pod '#{pod_name}'[^:]*$/)
+        UI.message "The pod '#{pod_name}' is already using the CocoaPods reference. No changes needed."
+      else
+        # Switch to CocoaPods reference
+        UI.message "Switching '#{pod_name}' to use CocoaPods reference."
+        podfile_content.gsub!(
+          /pod '#{pod_name}'.*$/,
+          "pod '#{pod_name}'"
+        )
+        # Write the updated content back to the Podfile
+        File.write(podfile_path, podfile_content)
+        UI.success "Updated '#{pod_name}' to use CocoaPods reference!"
+      end
     end
   end
 

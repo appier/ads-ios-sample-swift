@@ -1,11 +1,9 @@
 import UIKit
-import AppierAds
+import AppLovinSDK
 
-final class AppierAdsInterstitialViewController: UIViewController {
-    var interstitialAd: APRInterstitialAd!
+class ALInterstitialViewController: UIViewController, MAAdViewAdDelegate {
 
-    let adUnitId = ""
-
+    private var retryAttempt = 0.0
     private lazy var instructionImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "illustration_interstitial_step0_art"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,13 +36,23 @@ final class AppierAdsInterstitialViewController: UIViewController {
         return button
     }()
 
+    var interstitialAd: MAInterstitialAd!
     var isLoad: Bool = false
+
+    deinit {
+        interstitialAd.delegate = nil
+        interstitialAd = nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+
         setupButton()
-        setupInterstitialAd()
+
+        interstitialAd = MAInterstitialAd(adUnitIdentifier: "c644df92dbb2f964")
+        interstitialAd.delegate = self
+
         step(0)
     }
 
@@ -75,19 +83,14 @@ final class AppierAdsInterstitialViewController: UIViewController {
         ])
     }
 
-    func setupInterstitialAd() {
-        let extra = APRAdExtras()
-        extra.set(key: .adUnitId, value: adUnitId)
-        extra.set(key: .zoneId, value: "6242")
-
-        interstitialAd = APRInterstitialAd(adUnitId: APRAdUnitId(adUnitId))
-        interstitialAd.delegate = self
-        interstitialAd.set(extras: extra)
-    }
-
     @objc func loadShowInterstitialAd(_ sender: UIButton) {
         if isLoad {
-            interstitialAd.show()
+            if interstitialAd.isReady {
+                interstitialAd.show()
+            } else {
+                print("Interstitial Ad is not ready to show")
+                step(0)
+            }
         } else {
             interstitialAd.load()
             step(1)
@@ -102,48 +105,69 @@ final class AppierAdsInterstitialViewController: UIViewController {
                 stepsImageView.image = UIImage(named: "illustration_interstitial_step0")
                 loadShowButton.setTitle("Load", for: .normal)
                 loadShowButton.isEnabled = true
+                loadShowButton.backgroundColor = UIColor.systemBlue
             case 1:
                 instructionImageView.image = UIImage(named: "illustration_interstitial_step1_art")
                 stepsImageView.image = UIImage(named: "illustration_interstitial_step1")
                 loadShowButton.isEnabled = false
+                loadShowButton.setTitle("Loading...", for: .normal)
+                loadShowButton.backgroundColor = UIColor.lightGray
             case 2:
                 isLoad = true
                 instructionImageView.image = UIImage(named: "illustration_interstitial_step2_art")
                 stepsImageView.image = UIImage(named: "illustration_interstitial_step2")
                 loadShowButton.setTitle("Show", for: .normal)
                 loadShowButton.isEnabled = true
+                loadShowButton.backgroundColor = UIColor.systemBlue
             default: break
         }
     }
-}
 
-extension AppierAdsInterstitialViewController: APRInterstitialAdDelegate {
-    func onAdNoBid(_ interstitialAd: AppierAds.APRInterstitialAd) {
-        print(#function)
-    }
+    // MARK: MAAdDelegate Protocol
 
-    func onAdLoaded(_ interstitialAd: AppierAds.APRInterstitialAd) {
+    func didLoad(_ ad: MAAd) {
         print(#function)
+        print("from:\(ad.networkName)")
         step(2)
+        //        if(ad.networkName != "Appier"){
+        //            retryAttempt += 1
+        //            //let delaySec = pow(2.0, min(6.0, retryAttempt))
+        //            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        //                self.interstitialAd.load()
+        //            }
+        //        }else{
+        //            step(2)
+        //        }
     }
 
-    func onAdLoadedFailed(_ interstitialAd: AppierAds.APRInterstitialAd, error: AppierAds.APRError) {
+    func didFailToLoadAd(forAdUnitIdentifier adUnitIdentifier: String, withError error: MAError) {
+        print(#function + ":" + error.message)
+        step(0)
+    }
+
+    func didExpand(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdShown(_ interstitialAd: AppierAds.APRInterstitialAd) {
+    func didCollapse(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdShownFailed(_ interstitialAd: AppierAds.APRInterstitialAd) {
+    func didDisplay(_ ad: MAAd) {
+        print(#function)
+        step(0)
+    }
+
+    func didHide(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdDismiss(_ interstitialAd: AppierAds.APRInterstitialAd) {
+    func didClick(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdClickedRecorded(_ interstitialAd: AppierAds.APRInterstitialAd) {
-        print(#function)
+    func didFail(toDisplay ad: MAAd, withError error: MAError) {
+        print(#function + ":" + error.message)
+        step(0)
     }
 }

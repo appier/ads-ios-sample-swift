@@ -1,11 +1,9 @@
 import UIKit
-import AppierAds
+import AppLovinSDK
 
-class AppierAdsBannerAdViewController: UIViewController {
-    var bannerAd300x250: APRBannerAd!
-    var bannerAd320x50: APRBannerAd!
-    var bannerAd320x480: APRBannerAd!
+class ALBannerViewController: UIViewController, MAAdViewAdDelegate {
 
+    // labels
     var label300x250: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,6 +26,7 @@ class AppierAdsBannerAdViewController: UIViewController {
         return label
     }()
 
+    // views
     var banner320x50: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +36,7 @@ class AppierAdsBannerAdViewController: UIViewController {
     var label320x480: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "320 x 480"
+        label.text = "320 x 480 (Not supported)"
         label.textColor = .gray
         return label
     }()
@@ -48,42 +47,24 @@ class AppierAdsBannerAdViewController: UIViewController {
         return view
     }()
 
-    let adUnitId = "e7dd194871e34a8cbc4627609fe43c80"
+    var adView: MAAdView!
+    var mrecView: MAAdView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupBannerAd()
+
+        adView = MAAdView(adUnitIdentifier: "6ca36e7bc4dccac0")
+        adView.delegate = self
+        adView.translatesAutoresizingMaskIntoConstraints = false
+        adView.loadAd()
+
+        mrecView = MAAdView(adUnitIdentifier: "1aeb3ceff6dab148", adFormat: MAAdFormat.mrec)
+        mrecView.delegate = self
+        mrecView.translatesAutoresizingMaskIntoConstraints = false
+        mrecView.loadAd()
+
         setupBannerConstraint()
-    }
-
-    func setupBannerAd() {
-        var extra = APRAdExtras()
-        extra.set(key: .adUnitId, value: adUnitId)
-        extra.set(key: .zoneId, value: "5933")
-
-        bannerAd300x250 = APRBannerAd(adUnitId: APRAdUnitId(adUnitId))
-        bannerAd300x250.delegate = self
-        bannerAd300x250.set(extras: extra)
-        bannerAd300x250.load()
-
-        extra = APRAdExtras()
-        extra.set(key: .adUnitId, value: adUnitId)
-        extra.set(key: .zoneId, value: "6241")
-
-        bannerAd320x50 = APRBannerAd(adUnitId: APRAdUnitId(adUnitId))
-        bannerAd320x50.delegate = self
-        bannerAd320x50.set(extras: extra)
-        bannerAd320x50.load()
-
-        extra = APRAdExtras()
-        extra.set(key: .adUnitId, value: adUnitId)
-        extra.set(key: .zoneId, value: "6242")
-
-        bannerAd320x480 = APRBannerAd(adUnitId: APRAdUnitId(adUnitId))
-        bannerAd320x480.delegate = self
-        bannerAd320x480.set(extras: extra)
-        bannerAd320x480.load()
     }
 
     func setupBannerConstraint() {
@@ -132,44 +113,64 @@ class AppierAdsBannerAdViewController: UIViewController {
             bannerView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor)
         ])
     }
-}
 
-extension AppierAdsBannerAdViewController: APRBannerAdDelegate {
-    func onAdNoBid(_ bannerAd: APRBannerAd) {
+    deinit {
+        adView.removeFromSuperview()
+        adView.delegate = nil
+        adView = nil
+
+        mrecView.removeFromSuperview()
+        mrecView.delegate = nil
+        mrecView = nil
+    }
+
+    // MARK: MAAdDelegate Protocol
+
+    func didExpand(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdLoaded(_ bannerAd: AppierAds.APRBannerAd, banner: UIView) {
+    func didCollapse(_ ad: MAAd) {
         print(#function)
-        if bannerAd.extras.get(key: .zoneId) as? String == "5933" {
-            // 300 x 250
-            setBannerConstraint(bannerView: banner, parentView: banner300x250)
-        } else if bannerAd.extras.get(key: .zoneId) as? String == "6241" {
-            // 320 x 50
-            setBannerConstraint(bannerView: banner, parentView: banner320x50)
-        } else if bannerAd.extras.get(key: .zoneId) as? String == "6242" {
-            // 320 x 480
-            setBannerConstraint(bannerView: banner, parentView: banner320x480)
+    }
+
+    func didLoad(_ ad: MAAd) {
+        print(#function + ", network:\(ad.networkName), placementId:\(ad.networkPlacement)")
+
+        // Banner 320*50
+        if ad.format == MAAdFormat.banner {
+            setBannerConstraint(bannerView: adView, parentView: banner320x50)
+            if ad.networkName == "Appier" {
+                adView.stopAutoRefresh()
+            }
+        }
+
+        // MREC 300*250
+        if ad.format == MAAdFormat.mrec {
+            setBannerConstraint(bannerView: mrecView, parentView: banner300x250)
+            if ad.networkName == "Appier" {
+                mrecView.stopAutoRefresh()
+            }
         }
     }
 
-    func onAdLoadedFailed(_ bannerAd: AppierAds.APRBannerAd, error: AppierAds.APRError) {
+    func didFailToLoadAd(forAdUnitIdentifier adUnitIdentifier: String, withError error: MAError) {
+        print(#function + ":\(error.message)")
+    }
+
+    func didDisplay(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdImpressionRecorded(_ bannerAd: AppierAds.APRBannerAd) {
+    func didHide(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdImpressionRecordedFailed(_ bannerAd: AppierAds.APRBannerAd, error: AppierAds.APRError) {
+    func didClick(_ ad: MAAd) {
         print(#function)
     }
 
-    func onAdClickedRecorded(_ bannerAd: AppierAds.APRBannerAd) {
-        print(#function)
-    }
-
-    func onAdClickedRecordedFailed(_ bannerAd: AppierAds.APRBannerAd, error: AppierAds.APRError) {
-        print(#function)
+    func didFail(toDisplay ad: MAAd, withError error: MAError) {
+        print(#function + ":\(error.message)")
     }
 }

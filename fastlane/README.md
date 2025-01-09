@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios develop_mode
+
+```sh
+[bundle exec] fastlane ios develop_mode
+```
+
+Switch cocoapods reference, use_local: Bool
+
 ### ios setup_and_build
 
 ```sh
@@ -51,22 +59,6 @@ Download public release from GitHub
 
 ```sh
 [bundle exec] fastlane ios install_framework_with_cocoapods
-```
-
-
-
-### ios develop_mode
-
-```sh
-[bundle exec] fastlane ios develop_mode
-```
-
-
-
-### ios install_local_framework
-
-```sh
-[bundle exec] fastlane ios install_local_framework
 ```
 
 

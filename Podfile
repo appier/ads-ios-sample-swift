@@ -11,8 +11,10 @@ inhibit_all_warnings!
 target 'AppierAdsSwiftSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   if $UsingCocoaPodsAppierFramework
+    pod 'AppierAds'
+    pod 'AppierAdsApplovinMediation'
+  else
     pod 'AppierAds', :path => '../appier-ads-ios'
+    pod 'AppierAdsApplovinMediation', :path => '../appier-applovin-ios-mediation'
   end
-  pod 'AppierAdsApplovinMediation', :path => '../appier-applovin-ios-mediation'
-
 end

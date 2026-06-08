@@ -52,22 +52,12 @@ DerivedData/
 !default.perspectivev3
 
 ### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
+*.xcodeproj/xcuserdata/
 /*.gcno
 
-### Projects ###
-*.xcodeproj
-*.xcworkspace
-
-### Tuist derived files ###
-graph.dot
+### Tuist generated ###
+.tuist-generated
 Derived/
-
-### Tuist managed dependencies ###
-Tuist/Dependencies
 
 # Swift Package Manager
 Packages/
@@ -89,3 +79,5 @@ artifacts/
 
 ### CocoaPods ###
 Pods/
+
+AppierAdsSampleWorkspace.xcworkspace/

@@ -1,6 +1,6 @@
 import AppierAds
 
 extension APRLogger {
-    static let controller = APRLogger(category: "Controller")
-    static let delegate = APRLogger(category: "Delegate")
+    nonisolated(unsafe) static let controller = APRLogger(category: "Controller")
+    nonisolated(unsafe) static let delegate = APRLogger(category: "Delegate")
 }

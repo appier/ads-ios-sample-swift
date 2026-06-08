@@ -1,9 +1,10 @@
 import UIKit
-import AppierAds
+@preconcurrency import AppierAds
 import GoogleMobileAds
 import AppTrackingTransparency
 
-@UIApplicationMain
+@main
+@MainActor
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?

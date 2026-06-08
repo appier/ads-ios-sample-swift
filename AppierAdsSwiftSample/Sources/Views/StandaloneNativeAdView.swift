@@ -10,7 +10,7 @@ class StandaloneNativeAdView: UIView {
     @IBOutlet weak var privacyInformationIconImgeView: UIImageView!
 }
 
-extension StandaloneNativeAdView: APRNativeAdRendering {
+extension StandaloneNativeAdView: @preconcurrency APRNativeAdRendering {
     var nativeAdTitleLabel: UILabel? {
         return titleLabel
     }

@@ -67,7 +67,7 @@ class AdMobNativeViewController: BaseNativeAdViewController {
     }
 }
 
-extension AdMobNativeViewController: GADNativeAdLoaderDelegate {
+extension AdMobNativeViewController: @preconcurrency GADNativeAdLoaderDelegate {
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         APRLogger.controller.debug("\(#function)")
         nativeAd.delegate = self
@@ -121,7 +121,7 @@ extension AdMobNativeViewController: GADNativeAdLoaderDelegate {
     }
 }
 
-extension AdMobNativeViewController: GADNativeAdDelegate {
+extension AdMobNativeViewController: @preconcurrency GADNativeAdDelegate {
     func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
         APRLogger.controller.debug("\(#function)")
     }
@@ -131,7 +131,7 @@ extension AdMobNativeViewController: GADNativeAdDelegate {
     }
 }
 
-extension AdMobNativeViewController: APRAdMobAdEventDelegate {
+extension AdMobNativeViewController: @preconcurrency APRAdMobAdEventDelegate {
     func onNativeAdImpressionRecorded(nativeAd: APRAdMobNativeAd) {
         APRLogger.controller.debug("\(#function)")
         APRLogger.controller.debug("adunit id: \(nativeAd.adUnitId)")

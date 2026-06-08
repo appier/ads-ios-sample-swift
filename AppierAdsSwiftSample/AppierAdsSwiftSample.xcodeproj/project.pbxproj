@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,7 +26,6 @@
 		E4B94FE8684BAAD858AE0A5A /* AdTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D982C7160DA08306737521B /* AdTableHeaderView.swift */; };
 		EBB920DB92EA1EB21C342D65 /* AppierColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF98811F252E260D830541EC /* AppierColor.swift */; };
 		ED17E758945F189823821D15 /* illustration_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = D397233BB2B80DBB4E915C0A /* illustration_banner.png */; };
-		FC652D3E3826EABF88597D08 /* Bundle+AppierAdsSwiftSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9AA9C535F6178A8BD3555 /* Bundle+AppierAdsSwiftSample.swift */; };
 		FDCD8876EFBF6A7982ECCC19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B18C5E525E4A0FBB4CA61E /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +66,6 @@
 		C8961D8BF0FAE06008A0A6DA /* AdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTableViewController.swift; sourceTree = "<group>"; };
 		CF98811F252E260D830541EC /* AppierColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppierColor.swift; sourceTree = "<group>"; };
 		D397233BB2B80DBB4E915C0A /* illustration_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_banner.png; sourceTree = "<group>"; };
-		E0F9AA9C535F6178A8BD3555 /* Bundle+AppierAdsSwiftSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppierAdsSwiftSample.swift"; sourceTree = "<group>"; };
 		E9F167691F040253213B0B4C /* BaseNativeAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNativeAdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,14 +121,6 @@
 				18320A73782F31EDBD4E4317 /* APRLogger.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		80373656334A7C805746B5A8 /* Derived */ = {
-			isa = PBXGroup;
-			children = (
-				F31810A1D696BEE1DF27890B /* Sources */,
-			);
-			path = Derived;
 			sourceTree = "<group>";
 		};
 		83976BDC9E63568B7EBC5B01 /* Layouts */ = {
@@ -200,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				9559216C9FACDAFCE3D81973 /* Assets */,
-				80373656334A7C805746B5A8 /* Derived */,
 				FE2DD466B4F8413F960F1342 /* LaunchScreen.storyboard */,
 				83976BDC9E63568B7EBC5B01 /* Layouts */,
 				350ED0C032A881B1FC992732 /* Sources */,
@@ -225,14 +214,6 @@
 				E9F167691F040253213B0B4C /* BaseNativeAdViewController.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		F31810A1D696BEE1DF27890B /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				E0F9AA9C535F6178A8BD3555 /* Bundle+AppierAdsSwiftSample.swift */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		FDFDF1771C75D9FD24CC088B /* Frameworks */ = {
@@ -275,8 +256,6 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "Appier Inc.";
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = AEE0925A02DE584218D09D1D /* Build configuration list for PBXProject "AppierAdsSwiftSample" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -322,9 +301,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AppierAdsSwiftSample/Pods-AppierAdsSwiftSample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -392,7 +375,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC652D3E3826EABF88597D08 /* Bundle+AppierAdsSwiftSample.swift in Sources */,
 				FDCD8876EFBF6A7982ECCC19 /* AppDelegate.swift in Sources */,
 				69890100C3EEA64774B4E57B /* AdMobNativeViewController.swift in Sources */,
 				26D09B4530036EC782D510B8 /* AdTableViewController.swift in Sources */,
